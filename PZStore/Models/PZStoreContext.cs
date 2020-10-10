@@ -37,13 +37,6 @@ namespace PZStore.Models
                     op.MapRightKey("ProductId"); 
                 });
 
-            //creating one to many relationship between Customer and Order
-            /*modelBuilder.Entity<Customer>()
-                .HasMany<Order>(c => c.Orders)
-                .WithRequired(o => o.Customer)
-                .HasForeignKey<int?>(o => o.CustomerID)
-                .WillCascadeOnDelete();*/
-
             base.OnModelCreating(modelBuilder);
         }
 
