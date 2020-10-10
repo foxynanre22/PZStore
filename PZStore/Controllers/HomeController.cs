@@ -1,5 +1,4 @@
-﻿using PZStore.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,11 +8,8 @@ namespace PZStore.Controllers
 {
     public class HomeController : Controller
     {
-        PZStoreContext db = new PZStoreContext();
         public ActionResult Index()
         {
-            db.Categories.Add(new Category { Name = "ChildCategory" });
-            db.SaveChanges();
             return View();
         }
 
