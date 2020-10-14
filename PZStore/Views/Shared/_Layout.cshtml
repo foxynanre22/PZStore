@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>PZS - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -16,24 +16,62 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("PZStore", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Main", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About Store", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                </ul>
+
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" placeholder="What do you want to find?" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-default" style="background-color: transparent; border-color:transparent;">
+                        <i class="glyphicon glyphicon-search" style="color: #f5f5dc;"></i>
+                    </button>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="signInLink">@Html.ActionLink("Sign In", "Contact", "Home")</li>
+                    <li id="signUpLink">@Html.ActionLink("Sign Up", "Contact", "Home")</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+
+    <footer class="container footer">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Contacts</h2>
+                <p>+48 888 999 000</p>
+                <p>infoPZS@gmail.com</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Links</h2>
+                <p>@Html.ActionLink("Main", "Index", "Home")</p>
+                <p>@Html.ActionLink("About Store", "About", "Home")</p>
+                <p>@Html.ActionLink("Contact Us", "Contact", "Home")</p>
+                <p>@Html.ActionLink("Sign In", "Contact", "Home")</p>
+                <p>@Html.ActionLink("Sign Up", "Contact", "Home")</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Location</h2>
+                <span>plac Defilad 1</span>
+                <br />
+                <span>00-901 Warszawa</span>
+            </div>
+        </div>
+        <div class="row">
+            <br />
+            © 2020 Copyright: PZStore.com
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

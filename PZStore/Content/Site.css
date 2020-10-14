@@ -1,6 +1,5 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +21,22 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.footer-inverse {
+    background-color: #606060;
+    border-color: #f5f5dc;
+}
+
+/*footer styles*/
+.footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #606060;
+    color: #f5f5dc;
+}
+
+    .footer a {
+        color: #f5f5dc;
+    }
