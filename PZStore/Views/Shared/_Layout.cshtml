@@ -3,80 +3,62 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PZS - @ViewBag.Title</title>
+    <title>Visual</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <!--Header START-->
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <!--Header-->
+    <nav class="navbar navbar-expand-md sticky-top navbar-visual navbar-light">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("PZStore", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Main", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About Store", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Help", "Contact", "Home")</li>
-                </ul>
+            <a href="#" class="navbar-brand-link">
+                <img src="~/Assets/images/master-page/logo.png" alt="PZStoreLogo" id="navbar_logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" placeholder="What do you want to find?" class="form-control" />
-                    </div>
-                    <button type="submit" class="btn btn-default" style="background-color: transparent; border-color:transparent;">
-                        <i class="glyphicon glyphicon-search" style="color: #f5f5dc;"></i>
+            <div id="navbarResponsive" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">@Html.ActionLink("Main", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("About Store", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Help", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="background-color: transparent; border-color:transparent;">
+                        <i class="fa fa-search" style="color: #f5f5dc;"></i>
                     </button>
                 </form>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="signInLink">@Html.ActionLink("Sign In", "Contact", "Home")</li>
-                    <li id="signUpLink">@Html.ActionLink("Sign Up", "Contact", "Home")</li>
+                <ul class="navbar-nav" style="margin-left: auto !important;">
+                    <li class="nav-item" id="signInLink">@Html.ActionLink("Sign In", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item" id="signUpLink">@Html.ActionLink("Sign Up", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>
+    </nav>
+
+    <!--Main Content-->
+    <div class="container body-content">
+        @RenderBody()
     </div>
-    <!--Header END-->
 
-    <div class="content container-fluid">
-        <aside class="sidebar col-md-2">
-            <div class="link" id="sidebarHeader">Categories</div>
-            <div class="link"><text>Clothes</text></div>
-            <div class="link"><text>Toys</text></div>
-            <div class="link"><text>Books</text></div>
-            <div class="link"><text>Sports</text></div>
-            <div class="link"><text>Electronics</text></div>
-            <div class="link"><text>Home</text></div>
-        </aside>
-
-        <div class="container body-content col-md-8">
-            @RenderBody()
-        </div>
-    </div>
-    
-
-    <!--Footer START-->
-    <footer class="container footer" id="footer">
+    <!--Footer-->
+    <footer class="container-fluid">
         <div class="row">
             <div class="col-md-4">
                 <h2>Contacts</h2>
                 <p>+48 888 999 000</p>
                 <p>infoPZS@gmail.com</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 ">
                 <h2>Links</h2>
-                <p>@Html.ActionLink("Main", "Index", "Home")</p>
-                <p>@Html.ActionLink("About Store", "About", "Home")</p>
-                <p>@Html.ActionLink("Contact Us", "Contact", "Home")</p>
-                <p>@Html.ActionLink("Sign In", "Contact", "Home")</p>
-                <p>@Html.ActionLink("Sign Up", "Contact", "Home")</p>
+                <ul class="footer-links">
+                    <li>@Html.ActionLink("Sign In", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Sign Up", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
             </div>
             <div class="col-md-4">
                 <h2>Location</h2>
@@ -85,12 +67,11 @@
                 <span>00-901 Warszawa</span>
             </div>
         </div>
-        <div class="row">
-            <br />
+        <div>
+            <hr />
             © 2020 Copyright: PZStore.com
         </div>
     </footer>
-    <!--Footer END-->
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
