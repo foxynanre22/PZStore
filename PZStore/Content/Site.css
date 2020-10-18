@@ -17,13 +17,8 @@ hr {
     max-height: 70px;
 }
 
-.nav-link {
-    color: antiquewhite !important;
-}
-
-.nav-link:hover {
-    color: #696969 !important;
-}
+.nav-link {color: antiquewhite !important;}
+.nav-link:hover {color: #696969 !important;}
 
 @media all and (max-width:767px) {
     .navbar-brand-link img {
@@ -48,9 +43,7 @@ hr {
         }
 }
 
-.body-content {
-    flex: 1 0 auto;
-}
+.body-content {flex: 1 0 auto;}
 
 footer {
     color: antiquewhite;
@@ -60,9 +53,7 @@ footer {
 }
 footer h2 {color: #6B8E23;}
 
-.social{
-    font-size: 32px;
-}
+.social{font-size: 32px;}
 
 .fa-facebook {color: #3b5998}
 .fa-instagram {color: #517fa4}
@@ -75,3 +66,9 @@ footer h2 {color: #6B8E23;}
 .fa-google-plus-g:hover {
     color: #ccc;
 }
+
+/*for correctly modals showing*/
+.modal-backdrop {z-index: -1;}
+
+/*modal styles*/
+.modal-content{color:#000000;}
