@@ -21,9 +21,9 @@ hr {
     color: antiquewhite !important;
 }
 
-    .nav-link:hover {
-        color: #696969 !important;
-    }
+.nav-link:hover {
+    color: #696969 !important;
+}
 
 @media all and (max-width:767px) {
     .navbar-brand-link img {
@@ -31,8 +31,21 @@ hr {
     }
 
     .navbar-brand-link {
-        position: absolute;
+        position: fixed;
+        top: -8px;
+        left: 8px;
     }
+    #navbarResponsive {
+        background-color: #6B8E23;
+    }
+    #navbarResponsive a {
+        text-align:center;
+    }
+        #navbarResponsive > form {
+            padding-left:10%;
+            margin: auto;
+            width: 50%;
+        }
 }
 
 .body-content {
