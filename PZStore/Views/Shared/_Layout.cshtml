@@ -29,7 +29,7 @@
                     <li class="nav-item">@Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Help", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0 ml-auto">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="background-color: transparent; border-color:transparent;">
                         <i class="fa fa-search" style="color: #f5f5dc;"></i>
@@ -55,11 +55,11 @@
                                     <div class="modal-body">
                                         <form action="#" method="post">
                                             <div class="form-group">
-                                                <i class="fa fa-user"></i>
-                                                <input type="text" class="form-control" placeholder="Username" required="required">
+                                                <i class="fa fa-envelope-square"></i>
+                                                <input type="email" class="form-control" placeholder="Email" required="required">
                                             </div>
                                             <div class="form-group">
-                                                <i class="fa fa-lock"></i>
+                                                <span><i class="fa fa-lock"></i></span>
                                                 <input type="password" class="form-control" placeholder="Password" required="required">
                                             </div>
                                             <input type="submit" class="btn btn-success btn-block btn-lg" value="LOGIN">
@@ -91,10 +91,10 @@
 
                                     <!-- Modal body -->
                                     <div class="modal-body">
-                                        <form action="#" method="post">
+                                        <form action="#" method="post" id="reg_form">
                                             <div class="form-group">
                                                 <label for="email">Email address:</label>
-                                                <input type="email" class="form-control" placeholder="Username" required="required">
+                                                <input id="email" type="email" class="form-control" placeholder="Your Email" required="required">
                                             </div>
                                             <div class="form-group">
                                                 <label for="pass1">Password:</label>
@@ -113,8 +113,22 @@
                                                 <input id="last_name" type="text" class="form-control" placeholder="Your Last Name" required="required">
                                             </div>
                                             <div class="form-group">
-                                                <label for="pass2">Country:</label>
-                                                <input id="pass2" type="password" class="form-control" placeholder="Confirm Password" required="required">
+                                                <label>Country:</label>
+                                                <select class="browser-default custom-select">
+                                                    <option selected disabled>Choose Country</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="JAPAN">Japan</option>
+                                                    <option value="RUSSIA">Russia</option>
+                                                    <option value="CHINA">China</option>
+                                                    <option value="FRANCE">France</option>
+                                                    <option value="GERMANY">Germany</option>
+                                                    <option value="POLAND">Poland</option>
+                                                    <option value="ENGLAND">England</option>
+                                                    <option value="CANADA">Canada</option>
+                                                    <option value="AUSTRALIA">Australia</option>
+                                                    <option value="SPAIN">Spain</option>
+                                                    <option value="TURKEY">Turkey</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="phone">Phone:</label>
@@ -136,7 +150,7 @@
     </nav>
 
     <!--Main Content-->
-    <div class="container body-content">
+    <div class="container-fluid body-content">
         @RenderBody()
     </div>
 
