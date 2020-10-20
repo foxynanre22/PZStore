@@ -136,10 +136,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\images\about-page\lable.jpg" />
     <Content Include="Assets\images\contact-page\coffee-cup.jpg" />
     <Content Include="Assets\images\master-page\logo.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\pages\about.css" />
     <Content Include="Content\pages\contact.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

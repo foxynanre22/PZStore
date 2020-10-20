@@ -3,8 +3,6 @@
     border: 1px solid #f0f0f0;
     border-radius: 20px;
     background: url("../../Assets/images/contact-page/coffee-cup.jpg") no-repeat center center fixed;
-    background-color: lightblue;
-    background-blend-mode: multiply;
     background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
