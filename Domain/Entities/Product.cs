@@ -13,7 +13,7 @@ namespace Domain.Entities
         public string Name { get; set; }
         public double Price { get; set; }
         public String Description { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
         public string Stock { get; set; }
 
         public virtual ICollection<Category> Categories { get; set; }
