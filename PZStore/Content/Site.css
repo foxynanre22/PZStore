@@ -1,24 +1,74 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿html, body {
+    color: #222;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+hr {
+    background-color: antiquewhite;
+    width: 25%;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.navbar-visual {
+    flex: 0 0 auto;
+    background-color: #6B8E23;
+    max-height: 70px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.nav-link {color: antiquewhite !important;}
+.nav-link:hover {color: #696969 !important;}
+
+@media all and (max-width:767px) {
+    .navbar-brand-link img {
+        width: 115px;
+    }
+
+    .navbar-brand-link {
+        position: fixed;
+        top: -8px;
+        left: 8px;
+    }
+    #navbarResponsive {
+        background-color: #6B8E23;
+    }
+    #navbarResponsive a {
+        text-align:center;
+    }
+        #navbarResponsive > form {
+            padding-left:10%;
+            margin: auto;
+            width: 50%;
+        }
 }
+
+.body-content {flex: 1 0 auto;}
+
+footer {
+    color: antiquewhite;
+    text-align: center;
+    background-color: #323232;
+    flex: 0 0 auto;
+}
+footer h2 {color: #6B8E23;}
+
+.social{font-size: 32px;}
+
+.fa-facebook {color: #3b5998}
+.fa-instagram {color: #517fa4}
+.fa-twitter {color: #00aced}
+.fa-youtube {color: #bb0000}
+.fa-google-plus-g {color: #dd4b39}
+
+.fa-facebook:hover, .fa-instagram:hover,
+.fa-twitter:hover, .fa-youtube:hover,
+.fa-google-plus-g:hover {
+    color: #ccc;
+}
+
+/*for correctly modals showing*/
+.modal-backdrop {z-index: -1;}
+
+/*modal styles*/
+.modal-content{color:#000000;}

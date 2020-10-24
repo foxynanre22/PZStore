@@ -3,37 +3,200 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>PZStore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <!--Header-->
+    <nav class="navbar navbar-expand-md sticky-top navbar-visual navbar-light">
+        <div class="container-fluid">
+            <!--Logo-->
+            <a href="#" class="navbar-brand-link">
+                <img src="~/Assets/images/master-page/logo.png" alt="PZStoreLogo" id="navbar_logo" />
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--Main Navbar-->
+            <div id="navbarResponsive" class="collapse navbar-collapse">
+                <!--Central Section-->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">@Html.ActionLink("Main", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("About Store", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 ml-auto">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="background-color: transparent; border-color:transparent;">
+                        <i class="fa fa-search" style="color: #f5f5dc;"></i>
+                    </button>
+                </form>
+                <!--Modals section-->
+                <ul class="navbar-nav" style="margin-left: auto !important;">
+                    <li class="nav-item nav-link" id="signInLink">
+                        <!-- Button to Open the Modal -->
+                        <button class="btn btn-dark m-0" data-toggle="modal" data-target="#signInModal">Sign In</button>
+                        <!-- The Modal -->
+                        <div class="modal fade" id="signInModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Sign In</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <form action="#" method="post">
+                                            <div class="form-group">
+                                                <i class="fa fa-envelope-square"></i>
+                                                <input type="email" class="form-control" placeholder="Email" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <span><i class="fa fa-lock"></i></span>
+                                                <input type="password" class="form-control" placeholder="Password" required="required">
+                                            </div>
+                                            <input type="submit" class="btn btn-success btn-block btn-lg" value="LOGIN">
+                                        </form>
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <a href="#" style="margin:auto;">Forgot Password?</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-link" id="signUpLink">
+                        <!-- Button to Open the Modal -->
+                        <button class="btn btn-dark m-0" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+                        <!-- The Modal -->
+                        <div class="modal fade" id="signUpModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Registration</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <form action="#" method="post" id="reg_form">
+                                            <div class="form-group">
+                                                <label for="email">Email address:</label>
+                                                <input id="email" type="email" class="form-control" placeholder="Your Email" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pass1">Password:</label>
+                                                <input id="pass1" type="password" class="form-control" placeholder="Password" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pass2">Confirm Password:</label>
+                                                <input id="pass2" type="password" class="form-control" placeholder="Confirm Password" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="first_name">First Name:</label>
+                                                <input id="first_name" type="text" class="form-control" placeholder="Your First Name" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="last_name">Last Name:</label>
+                                                <input id="last_name" type="text" class="form-control" placeholder="Your Last Name" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Country:</label>
+                                                <select class="browser-default custom-select">
+                                                    <option selected disabled>Choose Country</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="JAPAN">Japan</option>
+                                                    <option value="RUSSIA">Russia</option>
+                                                    <option value="CHINA">China</option>
+                                                    <option value="FRANCE">France</option>
+                                                    <option value="GERMANY">Germany</option>
+                                                    <option value="POLAND">Poland</option>
+                                                    <option value="ENGLAND">England</option>
+                                                    <option value="CANADA">Canada</option>
+                                                    <option value="AUSTRALIA">Australia</option>
+                                                    <option value="SPAIN">Spain</option>
+                                                    <option value="TURKEY">Turkey</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="phone">Phone:</label>
+                                                <input id="phone" type="tel" class="form-control" placeholder="Your Phone" required="required">
+                                            </div>
+
+                                            <input type="submit" class="btn btn-warning btn-block btn-lg" value="SIGN UP">
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+
+    <!--Main Content-->
+    <div class="container-fluid body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+
+    <!--Footer-->
+    <footer class="container-fluid">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h2>Contacts</h2>
+                <span>+48 888 999 000</span><br />
+                <span>infoPZS@gmail.com</span>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Links</h2>
+                    </div>
+                    <div class="col-12 social">
+                        <a href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-google-plus-g"></i>
+                        </a>
+                    </div>
+                </div>               
+            </div>
+            <div class="col-md-4">
+                <h2>Location</h2>
+                <span>plac Defilad 1</span>
+                <br />
+                <span>00-901 Warszawa</span>
+            </div>
+        </div>
+        <div>
+            <hr />
+            © 2020 Copyright: PZStore.com
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
