@@ -5,6 +5,7 @@ using System.Web;
 
 namespace PZStore.Models
 {
+    /*Represent information about items on the current page and all pages*/
     public class PagingInfo
     {
         public int TotalItems { get; set; }

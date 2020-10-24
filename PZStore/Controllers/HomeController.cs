@@ -9,6 +9,7 @@ namespace PZStore.Controllers
 {
     public class HomeController : Controller
     {
+        /*productPage parameter is send by ProductsRow*/
         public ActionResult Index(int productPage = 1)
         {
             ViewBag.productPage = productPage;

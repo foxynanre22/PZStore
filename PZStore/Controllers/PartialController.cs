@@ -33,6 +33,7 @@ namespace PZStore.Controllers
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize),
 
+                /*for PageLinks helper on View*/
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,

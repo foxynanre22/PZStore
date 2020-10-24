@@ -11,10 +11,11 @@ namespace PZStore.HtmlHelpers
 {
     public static class PagingHelper
     {
+        /*For creating pages navigation bar*/
         public static MvcHtmlString PageLinks(this HtmlHelper Html, PagingInfo pagingInfo, Func<int, string> pageUrl)
         {
             StringBuilder result = new StringBuilder();
-
+            /*Creating links for some number of pages*/
             for (int i = 1; i <= pagingInfo.TotalPages; i++)
             {
                 TagBuilder link = new TagBuilder("a");
