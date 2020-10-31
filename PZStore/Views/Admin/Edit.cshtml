@@ -1,0 +1,80 @@
+﻿@using Domain.Entities
+@model Domain.Entities.Product
+
+
+@{
+    ViewBag.Title = "Admin Panel: Product Editing";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Editing product "@Model.Name"</h3>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <div class="card-body">
+            @Html.HiddenFor(m=> m.ProductID)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if(property.PropertyName != "ProductID" && property.PropertyName != "Orders")
+                {
+            <div class="form-group">
+                <label>@(property.DisplayName ?? property.PropertyName)</label>
+                @if (property.PropertyName == "Description")
+                {
+                    @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                }
+                else if (property.PropertyName == "Categories")
+                {
+                    <br />
+                    var categories = new Domain.Concrete.CategoryRepository().Categories;
+                    <table>
+                        <tr>
+                            @{ 
+                                int count = 0;
+                                foreach (var category in categories)
+                                {
+                                    if (count++ % 3 == 0)
+                                    {
+                                        @:</tr><tr>
+                                    }
+                                    <td>     
+                                        @Html.CheckBox(category.CategoryID.ToString(), false, new {@value = category.Name })
+                                        @category.Name
+                                    </td>
+                                }
+                                @:</tr>
+                                
+                            }
+                    </table>
+                    @*@foreach (var category in categories)
+                    {
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="">
+                                @category.Name
+                            </label>
+                        </div>
+                    }*@
+                }
+                else
+                {
+                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                }
+            </div>
+                }
+            }
+        </div>
+
+        <div class="card-footer text-center">
+            <input type="submit" value="Save" class="btn btn-info" />
+            @Html.ActionLink("Cancel", "Index", null, new {@class = "btn btn-danger" })
+        </div>
+    }
+
+</div>
+
+
+
