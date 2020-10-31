@@ -10,9 +10,10 @@ namespace PZStore.Controllers
     public class HomeController : Controller
     {
         /*productPage parameter is send by ProductsRow*/
-        public ActionResult Index(int productPage = 1)
+        public ActionResult Index(string category = null, int productPage = 1)
         {
             ViewBag.productPage = productPage;
+            ViewBag.currentCategory = category;
             return View();
         }
 

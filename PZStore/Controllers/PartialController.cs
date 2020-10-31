@@ -24,11 +24,12 @@ namespace PZStore.Controllers
             return PartialView(model);
         }
 
-        public PartialViewResult ProductsRow(int page = 1)
+        public PartialViewResult ProductsRow(string category, int page = 1)
         {
             ProductsPagesViewModel model = new ProductsPagesViewModel
             {
                 Products = repository.Products
+                .Where(p => category == null || p.Categories.FirstOrDefault().Name == category)
                 .OrderBy(product => product.ProductID)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize),
@@ -39,7 +40,9 @@ namespace PZStore.Controllers
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = repository.Products.Count()
-                }
+                },
+
+                CurrentCategory = category
             };
 
             return PartialView(model);
