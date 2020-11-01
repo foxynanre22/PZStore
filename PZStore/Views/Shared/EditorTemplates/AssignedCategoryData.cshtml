@@ -1,0 +1,7 @@
+﻿@model PZStore.Models.WorkWithCategories.AssignedCategoryData
+
+<div class="form-check form-check-inline">
+    @Html.HiddenFor(model => model.CategoryID)
+    @Html.CheckBoxFor(model => model.Assigned)
+    @Html.DisplayFor(model => model.Name)
+</div>

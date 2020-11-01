@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Abstract
 {
-    public class ICategoryRepository
+    public interface ICategoryRepository
     {
         IEnumerable<Category> Categories { get; }
+        void SaveCategory(Category category);
     }
 }

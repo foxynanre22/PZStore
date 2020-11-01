@@ -15,5 +15,24 @@ namespace Domain.Concrete
         {
             get { return context.Categories; }
         }
+
+        public void SaveCategory(Category category)
+        {
+            if (category.CategoryID == 0)
+            {
+                context.Categories.Add(category);
+            }
+            else
+            {
+                Category dbCategory = context.Categories.Find(category.CategoryID);
+
+                if (dbCategory != null)
+                {
+                    dbCategory.Name = category.Name;
+                }
+            }
+
+            context.SaveChanges();
+        }
     }
 }

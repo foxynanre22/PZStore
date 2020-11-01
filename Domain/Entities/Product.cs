@@ -19,5 +19,11 @@ namespace Domain.Entities
         public virtual ICollection<Category> Categories { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+
+        public Product()
+        {
+            Categories = new List<Category>();
+            Orders = new List<Order>();
+        }
     }
 }
