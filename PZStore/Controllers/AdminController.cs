@@ -83,8 +83,7 @@ namespace PZStore.Controllers
                 {
                     if (assignedCategory.Assigned)
                     {
-                        var category = new Category { CategoryID = assignedCategory.CategoryID };
-                        /*categoryRepository.SaveCategory(category);*/
+                        var category = categoryRepository.Categories.FirstOrDefault(c => c.Name == assignedCategory.Name);
                         product.Categories.Add(category);
                     }
                 }

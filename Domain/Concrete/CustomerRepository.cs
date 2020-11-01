@@ -10,7 +10,8 @@ namespace Domain.Concrete
 {
     public class CustomerRepository : ICustomerRepository
     {
-        PZStoreContext context = new PZStoreContext();
+        PZStoreContext context = MainContext.context;
+
         public IEnumerable<Customer> Customers
         {
             get { return context.Customers; }

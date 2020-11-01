@@ -10,7 +10,8 @@ namespace Domain.Concrete
 {
     public class CategoryRepository : ICategoryRepository
     {
-        PZStoreContext context = new PZStoreContext();
+        PZStoreContext context = MainContext.context;
+
         public IEnumerable<Category> Categories
         {
             get { return context.Categories; }
