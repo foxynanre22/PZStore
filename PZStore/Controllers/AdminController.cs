@@ -28,22 +28,28 @@ namespace PZStore.Controllers
         public ActionResult Edit(int productID)
         {
             Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == productID);
+            var viewModel = ViewModelHelpers.ToViewModel(product);
+            viewModel.Categories = FillCategoryData();
 
-            return View(product);
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
+                var product = ViewModelHelpers.ToDomainModel(productViewModel);
+
+                AddOrUpdateCategories(product, productViewModel.Categories);
                 productRepository.SaveProduct(product);
+
                 TempData["message"] = string.Format("Product \"{0}\" are successful changed", product.Name);
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(product);
+                return View(productViewModel);
             }
         }
 
@@ -58,20 +64,14 @@ namespace PZStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var product = new Product
-                {
-                    ProductID = productViewModel.ProductID,
-                    Name = productViewModel.Name,
-                    Description = productViewModel.Description,
-                    Image = productViewModel.Image,
-                    Stock = productViewModel.Stock,
-                    Price = productViewModel.Price
-                };
+                var product = ViewModelHelpers.ToDomainModel(productViewModel);
 
                 AddOrUpdateCategories(product, productViewModel.Categories);
                 productRepository.SaveProduct(product);
+                TempData["message"] = string.Format("Product \"{0}\" are successful created", product.Name);
             }
-            return View(productViewModel);
+            
+            return RedirectToAction("Index");
         }
 
         //for binding Categories and Products (using before saving product to the database)
