@@ -140,6 +140,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Global.asax.cs">
@@ -154,12 +155,17 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductsPagesViewModel.cs" />
+    <Compile Include="Models\WorkWithCategories\AssignedCategoryData.cs" />
+    <Compile Include="Models\WorkWithCategories\CategoryViewModel.cs" />
+    <Compile Include="Models\WorkWithCategories\ProductViewModel.cs" />
+    <Compile Include="Models\WorkWithCategories\ViewModelHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\images\contact-page\coffee-cup.jpg" />
     <Content Include="Assets\images\master-page\logo.png" />
     <Content Include="Assets\images\master-page\shortcut-icon.png" />
+    <Content Include="Assets\images\products\clothes\trousers\trous-black-sport.png" />
     <Content Include="Assets\images\products\clothes\tshirts\black-ts.jpg" />
     <Content Include="Assets\images\products\clothes\tshirts\blue-ts.jpg" />
     <Content Include="Assets\images\products\clothes\tshirts\green-ts.png" />
@@ -208,6 +214,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Partial\ProductCard.cshtml" />
     <Content Include="Views\Partial\ProductsRow.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AssignedCategoryData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

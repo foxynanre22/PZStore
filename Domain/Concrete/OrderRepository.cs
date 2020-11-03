@@ -11,6 +11,9 @@ namespace Domain.Concrete
     public class OrderRepository : IOrderRepository
     {
         PZStoreContext context = MainContext.context;
+<<<<<<< HEAD
+=======
+>>>>>>> Admin
         public IEnumerable<Order> Orders
         {
             get { return context.Orders; }

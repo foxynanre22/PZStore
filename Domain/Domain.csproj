@@ -78,6 +78,7 @@
     <Compile Include="Abstract\IProductRepository.cs" />
     <Compile Include="Concrete\CategoryRepository.cs" />
     <Compile Include="Concrete\CustomerRepository.cs" />
+    <Compile Include="Concrete\MainContext.cs" />
     <Compile Include="Concrete\OrderRepository.cs" />
     <Compile Include="Concrete\ProductRepository.cs" />
     <Compile Include="Concrete\PZStoreContext.cs" />

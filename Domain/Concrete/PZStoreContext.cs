@@ -23,8 +23,8 @@ namespace Domain.Concrete
                 .Map(pc =>
                 {
                     pc.ToTable("ProductCategory");
-                    pc.MapLeftKey("ProductId");
-                    pc.MapRightKey("CategoryId");
+                    pc.MapLeftKey("CategoryId");
+                    pc.MapRightKey("ProductId");
                 });
 
             //creating many to many relationship between Product and Order
