@@ -11,9 +11,7 @@ namespace Domain.Concrete
     public class CategoryRepository : ICategoryRepository
     {
         PZStoreContext context = MainContext.context;
-<<<<<<< HEAD
-=======
->>>>>>> Admin
+
         public IEnumerable<Category> Categories
         {
             get { return context.Categories; }

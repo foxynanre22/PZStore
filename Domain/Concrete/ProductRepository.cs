@@ -11,9 +11,7 @@ namespace Domain.Concrete
     public class ProductRepository : IProductRepository
     {
         PZStoreContext context = MainContext.context;
-<<<<<<< HEAD
-=======
->>>>>>> Admin
+
         public IEnumerable<Product> Products
         {
             get { return context.Products; }
