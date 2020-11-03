@@ -10,7 +10,7 @@ namespace Domain.Concrete
 {
     public class OrderRepository : IOrderRepository
     {
-        PZStoreContext context = new PZStoreContext();
+        PZStoreContext context = MainContext.context;
         public IEnumerable<Order> Orders
         {
             get { return context.Orders; }
