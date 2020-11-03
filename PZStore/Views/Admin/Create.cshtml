@@ -1,8 +1,8 @@
 ﻿@model PZStore.Models.WorkWithCategories.ProductViewModel
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Create Product";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";   
 }
 <div class="card">
     <div class="card-header">
@@ -21,7 +21,7 @@
                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Name)
                     </div>
                 </div>
 
@@ -71,6 +71,6 @@
             <input type="submit" value="Create" class="btn btn-success" />
             @Html.ActionLink("Back to Products", "Index", null, new { @class = "btn btn-info" })
         </div>
-     }
+    }
 </div>
 

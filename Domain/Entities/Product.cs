@@ -14,7 +14,7 @@ namespace Domain.Entities
         public double Price { get; set; }
         public String Description { get; set; }
         public string Image { get; set; }
-        public string Stock { get; set; }
+        public int Stock { get; set; }
 
         public virtual ICollection<Category> Categories { get; set; }
 

@@ -40,5 +40,19 @@ namespace Domain.Concrete
 
             context.SaveChanges();
         }
+
+        public void DeleteProduct(Product product)
+        {
+            if (product.ProductID != 0)
+            {
+                Product dbProduct = context.Products.Find(product.ProductID);
+
+                if (dbProduct != null)
+                {
+                    context.Products.Remove(dbProduct);
+                    context.SaveChanges();
+                }
+            }  
+        }
     }
 }

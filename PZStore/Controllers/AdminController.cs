@@ -70,7 +70,24 @@ namespace PZStore.Controllers
                 productRepository.SaveProduct(product);
                 TempData["message"] = string.Format("Product \"{0}\" are successful created", product.Name);
             }
-            
+            else
+            {
+                return View(productViewModel);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Delete (int productID)
+        {
+            if (ModelState.IsValid)
+            {
+                Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == productID);
+                productRepository.DeleteProduct(product);
+                TempData["message"] = string.Format("Product \"{0}\" are successful deleted", product.Name);
+            }
+
             return RedirectToAction("Index");
         }
 
