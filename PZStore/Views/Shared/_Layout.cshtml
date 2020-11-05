@@ -35,17 +35,13 @@
                         <i class="fa fa-search" style="color: #f5f5dc;"></i>
                     </button>
                 </form>
-                <!--Modals section-->
+
                 <ul class="navbar-nav" style="margin-left: auto !important;">
                     <li class="nav-item nav-link" id="signInLink">
-                        <!-- Button to Open the Modal -->
-                        <button class="btn btn-dark m-0" data-toggle="modal" data-target="#signInModal">Sign In</button>
-                        <!-- The Modal before </body>-->
+                        <a href="@Url.Action("LogIn","Account")" class="btn btn-dark m-0">Sign In</a>
                     </li>
                     <li class="nav-item nav-link" id="signUpLink">
-                        <!-- Button to Open the Modal -->
-                        <button class="btn btn-dark m-0" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
-                        <!-- The Modal before </body>-->
+                        <a href="@Url.Action("Register","Account")" class="btn btn-dark m-0">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -98,7 +94,7 @@
         </div>
         <div>
             <hr />
-            © 2020 Copyright: PZStore.com
+            © 2020 Copyright: Daniel Martin
         </div>
     </footer>
 
@@ -107,7 +103,5 @@
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    @Html.Action("LogIn", "Account")
-    @Html.Action("Register", "Account")
 </body>
 </html>

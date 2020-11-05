@@ -169,7 +169,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\images\congrats-register\check_mark.png" />
+    <Content Include="Assets\images\account\layout\user_img.png" />
+    <Content Include="Assets\images\register\check_mark.png" />
     <Content Include="Assets\images\contact-page\coffee-cup.jpg" />
     <Content Include="Assets\images\master-page\logo.png" />
     <Content Include="Assets\images\master-page\shortcut-icon.png" />
@@ -188,6 +189,7 @@
     <Content Include="Assets\images\products\toys\put-figure.jpg" />
     <Content Include="Assets\images\products\toys\puzzle-jigsaw.jpg" />
     <Content Include="Assets\images\products\toys\teddy.png" />
+    <Content Include="Assets\images\register\uncheck-mark.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\pages\about.css" />
@@ -232,6 +234,8 @@
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\CongratsRegister.cshtml" />
+    <Content Include="Views\Account\ConfirmFalled.cshtml" />
+    <Content Include="Views\Shared\_AccountLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

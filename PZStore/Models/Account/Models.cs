@@ -8,9 +8,9 @@ namespace PZStore.Models.Account
 {
     public class LoginModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please, enter email")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please, enter password")]
         public string Password { get; set; }
     }
 

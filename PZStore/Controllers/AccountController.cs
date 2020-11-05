@@ -22,9 +22,9 @@ namespace PZStore.Controllers
         }
 
         [AllowAnonymous]
-        public PartialViewResult Register()
+        public ActionResult Register()
         {
-            return PartialView();
+            return View();
         }
 
         [HttpPost]
@@ -63,7 +63,7 @@ namespace PZStore.Controllers
                         
                         smtp.Send(message);
 
-                        return Redirect(Url.Action("CongratsRegister", "Account"));
+                        return RedirectToAction("CongratsRegister");
                     }
                 }
                 else
@@ -73,7 +73,7 @@ namespace PZStore.Controllers
                 }
             }
 
-            return PartialView(model); 
+            return View(model); 
         }
 
         [AllowAnonymous]
@@ -101,36 +101,79 @@ namespace PZStore.Controllers
         }
 
         [AllowAnonymous]
-        public string ConfirmFalled(string Email)
+        public ActionResult ConfirmFalled(string Email)
         {
             if(Email == "")
             {
-                return "User with email " + Email + " wasn't registered";
+                ViewBag.Message = "User with email " + Email + " wasn't registered";
+                return View();
             }
             else
             {
-                return "Email " + Email + "wasn't confirmed";
+                ViewBag.Message = "Email " + Email + "wasn't confirmed";
+                return View();
             }       
         }
 
         [AllowAnonymous]
         public ActionResult CongratsRegister()
         {
-            return View("CongratsRegister");
+            return View();
         }
 
         [AllowAnonymous]
-        public PartialViewResult LogIn()
+        public ActionResult LogIn()
         {
-            return PartialView();
+            return View();
         }
 
-        /*[HttpPost]
+        [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult LogIn(LoginModel model)
         {
+            if (ModelState.IsValid)
+            {
+                Customer customer = null;
+                customer = customerRepository.Customers.FirstOrDefault(c => c.Email == model.Email);
 
-        }*/
+                if (customer == null)
+                {
+                    ModelState.AddModelError("unregisteredUser", "User with this email doesn't exist");
+                    return View(model);
+                }
+                else
+                {
+                    if (customer.ConfirmedEmail)
+                    {
+                        if (customer.Password == model.Password)
+                        {
+                            FormsAuthentication.SetAuthCookie(customer.Email, true);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("wrongPass", "User with this email have another password");
+                            return View(model);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("unconfirmedUser", "User email dont confirm!");
+                        return View(model);
+                    }
+                    
+                }
+            }
+
+            return View(model);
+        }
+
+        public ActionResult Account_Exit()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }
