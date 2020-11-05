@@ -140,6 +140,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
@@ -148,20 +149,27 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Migrations\202010241115276_Change_Product_Image.cs" />
-    <Compile Include="Migrations\202010241115276_Change_Product_Image.designer.cs">
-      <DependentUpon>202010241115276_Change_Product_Image.cs</DependentUpon>
+    <Compile Include="Migrations\202011041749032_Initial.cs" />
+    <Compile Include="Migrations\202011041749032_Initial.designer.cs">
+      <DependentUpon>202011041749032_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011041750116_UpdateCustomer.cs" />
+    <Compile Include="Migrations\202011041750116_UpdateCustomer.designer.cs">
+      <DependentUpon>202011041750116_UpdateCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account\Models.cs" />
+    <Compile Include="Models\Account\CustomerViewModelHelpers.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductsPagesViewModel.cs" />
     <Compile Include="Models\WorkWithCategories\AssignedCategoryData.cs" />
     <Compile Include="Models\WorkWithCategories\CategoryViewModel.cs" />
     <Compile Include="Models\WorkWithCategories\ProductViewModel.cs" />
-    <Compile Include="Models\WorkWithCategories\ViewModelHelpers.cs" />
+    <Compile Include="Models\WorkWithCategories\ProductViewModelHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\images\congrats-register\check_mark.png" />
     <Content Include="Assets\images\contact-page\coffee-cup.jpg" />
     <Content Include="Assets\images\master-page\logo.png" />
     <Content Include="Assets\images\master-page\shortcut-icon.png" />
@@ -193,6 +201,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -219,6 +229,9 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AssignedCategoryData.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\CongratsRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -235,8 +248,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010241115276_Change_Product_Image.resx">
-      <DependentUpon>202010241115276_Change_Product_Image.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011041749032_Initial.resx">
+      <DependentUpon>202011041749032_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011041750116_UpdateCustomer.resx">
+      <DependentUpon>202011041750116_UpdateCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

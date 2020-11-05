@@ -17,5 +17,10 @@ namespace Domain.Entities
 
         // Navigation properties
         public virtual ICollection<Product> Products { get; set; }
+
+        public Order()
+        {
+            Products = new List<Product>();
+        }
     }
 }

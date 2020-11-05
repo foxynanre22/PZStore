@@ -28,7 +28,7 @@ namespace PZStore.Controllers
         public ActionResult Edit(int productID)
         {
             Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == productID);
-            var viewModel = ViewModelHelpers.ToViewModel(product);
+            var viewModel = ProductViewModelHelpers.ToViewModel(product);
             viewModel.Categories = FillCategoryData();
 
             return View(viewModel);
@@ -39,7 +39,7 @@ namespace PZStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var product = ViewModelHelpers.ToDomainModel(productViewModel);
+                var product = ProductViewModelHelpers.ToDomainModel(productViewModel);
 
                 AddOrUpdateCategories(product, productViewModel.Categories);
                 productRepository.SaveProduct(product);
@@ -64,7 +64,7 @@ namespace PZStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var product = ViewModelHelpers.ToDomainModel(productViewModel);
+                var product = ProductViewModelHelpers.ToDomainModel(productViewModel);
 
                 AddOrUpdateCategories(product, productViewModel.Categories);
                 productRepository.SaveProduct(product);

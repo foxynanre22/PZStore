@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-md sticky-top navbar-visual navbar-light">
         <div class="container-fluid">
             <!--Logo-->
-            <a href="#" class="navbar-brand-link">
+            <a href="~/Home/Index" class="navbar-brand-link">
                 <img src="~/Assets/images/master-page/logo.png" alt="PZStoreLogo" id="navbar_logo" />
             </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -40,109 +40,12 @@
                     <li class="nav-item nav-link" id="signInLink">
                         <!-- Button to Open the Modal -->
                         <button class="btn btn-dark m-0" data-toggle="modal" data-target="#signInModal">Sign In</button>
-                        <!-- The Modal -->
-                        <div class="modal fade" id="signInModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Sign In</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                        <form action="#" method="post">
-                                            <div class="form-group">
-                                                <i class="fa fa-envelope-square"></i>
-                                                <input type="email" class="form-control" placeholder="Email" required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <span><i class="fa fa-lock"></i></span>
-                                                <input type="password" class="form-control" placeholder="Password" required="required">
-                                            </div>
-                                            <input type="submit" class="btn btn-success btn-block btn-lg" value="LOGIN">
-                                        </form>
-                                    </div>
-
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                        <a href="#" style="margin:auto;">Forgot Password?</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                        <!-- The Modal before </body>-->
                     </li>
                     <li class="nav-item nav-link" id="signUpLink">
                         <!-- Button to Open the Modal -->
                         <button class="btn btn-dark m-0" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
-                        <!-- The Modal -->
-                        <div class="modal fade" id="signUpModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Registration</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                        <form action="#" method="post" id="reg_form">
-                                            <div class="form-group">
-                                                <label for="email">Email address:</label>
-                                                <input id="email" type="email" class="form-control" placeholder="Your Email" required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="pass1">Password:</label>
-                                                <input id="pass1" type="password" class="form-control" placeholder="Password" required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="pass2">Confirm Password:</label>
-                                                <input id="pass2" type="password" class="form-control" placeholder="Confirm Password" required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="first_name">First Name:</label>
-                                                <input id="first_name" type="text" class="form-control" placeholder="Your First Name" required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="last_name">Last Name:</label>
-                                                <input id="last_name" type="text" class="form-control" placeholder="Your Last Name" required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Country:</label>
-                                                <select class="browser-default custom-select">
-                                                    <option selected disabled>Choose Country</option>
-                                                    <option value="USA">USA</option>
-                                                    <option value="JAPAN">Japan</option>
-                                                    <option value="RUSSIA">Russia</option>
-                                                    <option value="CHINA">China</option>
-                                                    <option value="FRANCE">France</option>
-                                                    <option value="GERMANY">Germany</option>
-                                                    <option value="POLAND">Poland</option>
-                                                    <option value="ENGLAND">England</option>
-                                                    <option value="CANADA">Canada</option>
-                                                    <option value="AUSTRALIA">Australia</option>
-                                                    <option value="SPAIN">Spain</option>
-                                                    <option value="TURKEY">Turkey</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="phone">Phone:</label>
-                                                <input id="phone" type="tel" class="form-control" placeholder="Your Phone" required="required">
-                                            </div>
-
-                                            <input type="submit" class="btn btn-warning btn-block btn-lg" value="SIGN UP">
-                                        </form>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
+                        <!-- The Modal before </body>-->
                     </li>
                 </ul>
             </div>
@@ -184,7 +87,7 @@
                             <i class="fab fa-google-plus-g"></i>
                         </a>
                     </div>
-                </div>               
+                </div>
             </div>
             <div class="col-md-4">
                 <h2>Location</h2>
@@ -200,7 +103,11 @@
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @Html.Action("LogIn", "Account")
+    @Html.Action("Register", "Account")
 </body>
 </html>

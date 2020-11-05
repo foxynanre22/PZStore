@@ -12,6 +12,7 @@ namespace Domain.Entities
         public int CustomerID { get; set; }
 
         public string Email { get; set; }
+        public bool ConfirmedEmail { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -20,5 +21,10 @@ namespace Domain.Entities
 
         // Navigation properties
         public virtual ICollection<Order> Orders { get; set; }
+
+        public Customer()
+        {
+            Orders = new List<Order>();
+        }
     }
 }

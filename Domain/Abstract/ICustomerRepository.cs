@@ -10,5 +10,7 @@ namespace Domain.Abstract
     public interface ICustomerRepository
     {
         IEnumerable<Customer> Customers { get; }
+        void SaveCustomer(Customer customer);
+        void DeleteCustomer(Customer customer);
     }
 }
