@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Global.asax.cs">
@@ -158,8 +159,8 @@
       <DependentUpon>202011041750116_UpdateCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Account\Models.cs" />
-    <Compile Include="Models\Account\CustomerViewModelHelpers.cs" />
+    <Compile Include="Models\Authorization\CustomerViewModelHelpers.cs" />
+    <Compile Include="Models\Authorization\Models.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductsPagesViewModel.cs" />
     <Compile Include="Models\WorkWithCategories\AssignedCategoryData.cs" />
@@ -170,6 +171,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\images\account\layout\user_img.png" />
+    <Content Include="Assets\images\account\profile-details\lock.png" />
+    <Content Include="Assets\images\account\profile-details\unlocked.png" />
     <Content Include="Assets\images\register\check_mark.png" />
     <Content Include="Assets\images\contact-page\coffee-cup.jpg" />
     <Content Include="Assets\images\master-page\logo.png" />
@@ -201,6 +204,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Account\ProfileDetails.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -231,11 +235,12 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AssignedCategoryData.cshtml" />
-    <Content Include="Views\Account\LogIn.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\CongratsRegister.cshtml" />
-    <Content Include="Views\Account\ConfirmFalled.cshtml" />
+    <Content Include="Views\Authorization\LogIn.cshtml" />
+    <Content Include="Views\Authorization\Register.cshtml" />
+    <Content Include="Views\Authorization\CongratsRegister.cshtml" />
+    <Content Include="Views\Authorization\ConfirmFalled.cshtml" />
     <Content Include="Views\Shared\_AccountLayout.cshtml" />
+    <Content Include="Views\Account\ProfileDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

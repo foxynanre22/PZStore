@@ -37,15 +37,18 @@
                 </form>
 
                 <ul class="navbar-nav" style="margin-left: auto !important;">
-                    <li class="nav-item nav-link" id="signInLink">
-                        <a href="~/Home/Index" class="navbar-brand-link">
-                            <img src="~/Assets/images/account/layout/user_img.png" alt="userLogo" id="user_logo" style="height: 55px" />
-                        </a>
-                    </li>
-                    <li class="nav-item nav-link" id="signInLink">
-                        <a href="~/Account/Account_Exit" class="navbar-brand-link">
-                            <img src="~/Assets/images/register/uncheck-mark.jpg" alt="userLogo" id="user_logo" style="height: 55px" />
-                        </a>
+                    <li class="nav-item nav-link">
+                        <div class="dropdown show">
+                            <a class="navbar-brand-link" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="~/Assets/images/account/layout/user_img.png" alt="userLogo" id="user_logo" style="height: 55px" />
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("ProfileDetails", "Account", new {customerEmail = User.Identity.Name })">Profile</a>
+                                <a class="dropdown-item" href="#">Orders</a>
+                                <a class="dropdown-item" href="@Url.Action("Account_Exit", "Authorization")">Exit</a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -54,6 +57,10 @@
 
     <!--Main Content-->
     <div class="container-fluid body-content">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
         @RenderBody()
     </div>
 

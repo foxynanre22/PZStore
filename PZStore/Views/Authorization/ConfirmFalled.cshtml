@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Confirm Falled";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="congrat-body" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Assets/images/register/uncheck-mark.jpg" alt="check_mark"
+                 style="width:50%" class="float-md-right" />
+        </div>
+        <div class="col-md-6">
+            <h2 style="padding-top: 20px;">
+                Something gone wrong...
+            </h2>
+            <h4>
+                @ViewBag.Message
+            </h4>
+        </div>
+    </div>
+</div>
+
