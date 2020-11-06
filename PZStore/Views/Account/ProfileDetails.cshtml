@@ -28,8 +28,9 @@
                     @required = "required",
                     @readonly = true
                 })
-                <button id="firstNameLock" type="button" onclick="changeLock('firstName')">
-                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;">
+                <button id="firstNameLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('firstName', 'firstNameLock', 'firstNameUnlock', 'firstNameLockButt')">
+                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="firstNameLock">
+                    <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="firstNameUnlock">
                 </button>
             </div>
 
@@ -48,8 +49,9 @@
                     @required = "required",
                     @readonly = true
                 })
-                <button id="lastNameLock" type="button" onclick="changeLock('lastName')">
-                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;">
+                <button id="lastNameLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('lastName', 'lastNameLock', 'lastNameUnlock', 'lastNameLockButt')">
+                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="lastNameLock">
+                    <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="lastNameUnlock">
                 </button>
             </div>
 
@@ -69,8 +71,9 @@
                    @required = "required",
                    @readonly = true
                 })
-                <button id="passwordLock" type="button" onclick="changeLock('password')">
-                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;">
+                <button id="passwordLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('password', 'passwordLock', 'passwordUnlock', 'passwordLockButt')">
+                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="passwordLock">
+                    <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="passwordUnlock">
                 </button>
             </div>
 
@@ -100,8 +103,9 @@
                     @required = "required",
                     @readonly = true
                 })
-                <button id="phoneLock" type="button" onclick="changeLock('phone')">
-                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;">
+                <button id="phoneLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('phone', 'phoneLock', 'phoneUnlock', 'phoneLockButt')">
+                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="phoneLock">
+                    <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="phoneUnlock">
                 </button>
             </div>
 
