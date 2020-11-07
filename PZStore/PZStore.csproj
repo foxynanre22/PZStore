@@ -168,6 +168,7 @@
     <Compile Include="Models\WorkWithCategories\ProductViewModel.cs" />
     <Compile Include="Models\WorkWithCategories\ProductViewModelHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyntaticSugar\EmailSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\images\account\layout\user_img.png" />
@@ -241,6 +242,7 @@
     <Content Include="Views\Authorization\ConfirmFalled.cshtml" />
     <Content Include="Views\Shared\_AccountLayout.cshtml" />
     <Content Include="Views\Account\ProfileDetails.cshtml" />
+    <Content Include="Views\Authorization\ConfirmSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

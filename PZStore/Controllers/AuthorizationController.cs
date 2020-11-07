@@ -1,6 +1,7 @@
 ﻿using Domain.Abstract;
 using Domain.Entities;
 using PZStore.Models.Authorization;
+using PZStore.SyntaticSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,23 +44,33 @@ namespace PZStore.Controllers
 
                     if (customer != null)
                     {
-                        MailAddress from = new MailAddress("pzstore9@gmail.com", "PZStore Registration");
-                        MailAddress to = new MailAddress(customer.Email);
-                        MailMessage message = new MailMessage(from, to);
+                        string messageSubject = "Email Confirmation";
 
-                        message.Subject = "PZStore email confirmation";
-                        message.Body = string.Format("For successful end of registration follow this link:" +
-                                        "<a href=\"{0}\" title=\"Confirm Email\">{0}</a>",
-                            Url.Action("ConfirmEmail", "Authorization", new { Token = customer.CustomerID, Email = customer.Email }, Request.Url.Scheme));
-                        message.IsBodyHtml = true;
+                        string message = string.Format("<html>" +
+                        "<head>" +
+                        "<meta charset = \"utf-8\"/>" +
+                        "</head>" +
+                        "<body style=\"justify-content: center; align-items: center;\">" +
+                        "<div style=\"max-width: 640px; margin:0 auto; text-align:center;\">" +
+                        "<table style=\"border-collapse:collapse;width:100%;text-align:center\" bgcolor=\"#6B8E23\">" +
+                        "<tbody>" +
+                        "<tr>" +
+                        "<td style=\"border-collapse:collapse;\">" +
+                        "<img src=\"cid:logo\" alt=\"logo\" height=\"34\" style=\"height:auto;line-height:100%;outline:none;text-decoration:none;border:0 none;\">" +
+                        "</td>" +
+                        "</tr>" +
+                        "</tbody>" +
+                        "</table>" +
+                        "<h1>Welcome to PZStore!</h1>" +
+                        "<h4>Please, click button below for successful complete your account confirmation.</h4>" +
+                        "<hr>" +
+                        "<button style=\"padding: 10px; background-color:#6B8E23; border: 1px solid; border-radius: 12px;\"><a style=\"color:antiquewhite; position:relative; text-decoration:none;text-transform:uppercase;\" href=\"{0}\" title=\"Confirm Email\" role=\"button\">" +
+                        "Confirm Email</a></button>" +
+                        "</div>" +
+                        "</body>" +
+                        "</html>", Url.Action("ConfirmEmail", "Authorization", new { Token = customer.CustomerID, Email = customer.Email }, Request.Url.Scheme));
 
-                        SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
-                        smtp.Port = 587;
-                        smtp.UseDefaultCredentials = true;
-                        smtp.EnableSsl = true;
-                        smtp.Credentials = new System.Net.NetworkCredential("pzstore9@gmail.com", "lfyybk546J@");
-
-                        smtp.Send(message);
+                        EmailSender.SendHtmlEmailTo(customer.Email, messageSubject, message, "C:\\Users\\Daniel Martin\\Desktop\\PZStore\\project\\PZStore\\Assets\\images\\master-page\\logo.png", "logo");
 
                         return RedirectToAction("CongratsRegister");
                     }
@@ -84,16 +95,16 @@ namespace PZStore.Controllers
                 {
                     user.ConfirmedEmail = true;
                     customerRepository.SaveCustomer(user);
-                    return RedirectToAction("Index", "Home");
+                    return View("ConfirmSuccess");
                 }
                 else
                 {
-                    return RedirectToAction("ConfirmFalled", "Account", new { Email = user.Email });
+                    return RedirectToAction("ConfirmFalled", "Authorization", new { Email = user.Email });
                 }
             }
             else
             {
-                return RedirectToAction("ConfirmFalled", "Account", new { Email = "" });
+                return RedirectToAction("ConfirmFalled", "Authorization", new { Email = "" });
             }
         }
 
