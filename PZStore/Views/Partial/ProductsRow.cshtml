@@ -35,5 +35,5 @@ else
 }
 <!--Own helper that connected on the top of the file.-->
 <div class="float-right"style="margin-bottom: 5px;">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", "Home", new { productPage = x }))
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", "Home", new { productPage = x, category = Model.CurrentCategory }))
 </div>

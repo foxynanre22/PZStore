@@ -39,11 +39,12 @@ namespace PZStore.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = repository.Products.Count()
+                    TotalItems = category == null ?
+                        repository.Products.Count() : repository.Products.Where(p => p.Categories.FirstOrDefault().Name == category).Count()
                 },
 
                 CurrentCategory = category
-            };
+            }; 
 
             return PartialView(model);
         }
