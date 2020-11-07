@@ -40,7 +40,7 @@
                 @style = "width: 25%; margin: auto;"
             })
             @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @style = "color:red" })
-            @Html.ValidationMessage("unregisteredUser", new { @style = "color:red" })
+            @Html.ValidationMessage("wrongPass", new { @style = "color:red" })
         </div>
         <input type="submit" class="btn btn-success btn-block btn-lg" value="LOGIN"
                style="width:10%; margin:auto;">
