@@ -48,5 +48,11 @@ namespace PZStore.Controllers
 
             return PartialView(model);
         }
+
+        public ActionResult ProductFullView(int productID)
+        {
+            Product current_product = repository.Products.FirstOrDefault(p => p.ProductID == productID);
+            return View(current_product);
+        }
     }
 }

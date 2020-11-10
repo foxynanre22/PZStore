@@ -196,6 +196,7 @@
     <Content Include="Assets\images\register\uncheck-mark.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Controllers\Partial\product-card.css" />
     <Content Include="Content\pages\about.css" />
     <Content Include="Content\pages\contact.css" />
     <Content Include="Content\pages\main-page.css" />
@@ -243,6 +244,7 @@
     <Content Include="Views\Shared\_AccountLayout.cshtml" />
     <Content Include="Views\Account\ProfileDetails.cshtml" />
     <Content Include="Views\Authorization\ConfirmSuccess.cshtml" />
+    <Content Include="Views\Partial\ProductFullView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

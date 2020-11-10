@@ -1,0 +1,35 @@
+﻿@using Domain.Entities
+@model Product
+
+@{
+    ViewBag.Title = "ProductFullView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row" style="margin:3%;">
+        <div class="col-md-5">
+            <img src="@Model.Image" alt="" style="max-width:90%;" />
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <h1>@Html.DisplayFor(name => Model.Name)</h1>
+            </div>
+            <div class="row">
+                <h3 style="color:forestgreen;">@Model.Price.ToString("C")</h3>
+            </div>
+            <br />
+            <div class="row">
+                <h4 style="color:#686868;">Description: </h4>
+                @Html.DisplayFor(desc => Model.Description)
+            </div>
+            <br />
+            <div class="row">
+                <h4 style="color:#686868;">Stock: @Html.DisplayFor(stock => Model.Stock)</h4>     
+            </div>
+            <br />
+            <div class="row">
+                <a href="#" class="btn btn-warning">Add to Cart</a>
+            </div>       
+        </div>
+    </div>
+</div>
