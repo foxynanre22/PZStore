@@ -149,7 +149,15 @@ namespace PZStore.Controllers
                 }
                 else
                 {
-                    if (customer.ConfirmedEmail)
+                    if (model.Email.Contains("@admin.site") && customer.RoleID == 1)
+                    {
+                        if (customer.Password == model.Password)
+                        {
+                            FormsAuthentication.SetAuthCookie(customer.Email, true);
+                            return RedirectToAction("Index", "Admin");
+                        }
+                    }
+                    else if (customer.ConfirmedEmail)
                     {
                         if (customer.Password == model.Password)
                         {

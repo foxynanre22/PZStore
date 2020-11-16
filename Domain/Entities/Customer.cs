@@ -21,10 +21,20 @@ namespace Domain.Entities
 
         // Navigation properties
         public virtual ICollection<Order> Orders { get; set; }
+        public int RoleID { get; set; }
+        public Role Role { get; set; }
 
         public Customer()
         {
             Orders = new List<Order>();
         }
+    }
+
+    public class Role
+    {
+        [Key]
+        public int RoleID { get; set; }
+
+        public string Name { get; set; }
     }
 }

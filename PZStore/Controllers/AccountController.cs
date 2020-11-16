@@ -11,7 +11,7 @@ using System.Net.Mail;
 
 namespace PZStore.Controllers
 {
-    [Authorize]
+    [Authorize (Roles ="user")]
     public class AccountController : Controller
     {
         ICustomerRepository customerRepository;

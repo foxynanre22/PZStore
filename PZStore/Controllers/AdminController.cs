@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PZStore.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         IProductRepository productRepository;

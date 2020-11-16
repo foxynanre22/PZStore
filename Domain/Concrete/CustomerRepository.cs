@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : ICustomerRepository, IDisposable
     {
         PZStoreContext context = MainContext.context;
 
@@ -21,6 +21,7 @@ namespace Domain.Concrete
         {
             if (customer.CustomerID == 0)
             {
+                customer.RoleID = 2;
                 context.Customers.Add(customer);
             }
             else
@@ -37,6 +38,7 @@ namespace Domain.Concrete
                     dbCustomer.Country = customer.Country;
                     dbCustomer.Phone = customer.Phone;
                     dbCustomer.Orders = customer.Orders;
+                    dbCustomer.RoleID = 2;
                 }
             }
 
@@ -55,6 +57,11 @@ namespace Domain.Concrete
                     context.SaveChanges();
                 }
             }
+        }
+
+        //for using class like resource (in using() block)
+        public void Dispose()
+        {
         }
     }
 }

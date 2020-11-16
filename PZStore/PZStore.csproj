@@ -76,6 +76,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -158,6 +161,10 @@
     <Compile Include="Migrations\202011041750116_UpdateCustomer.designer.cs">
       <DependentUpon>202011041750116_UpdateCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011152344114_UserRoles.cs" />
+    <Compile Include="Migrations\202011152344114_UserRoles.designer.cs">
+      <DependentUpon>202011152344114_UserRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Authorization\CustomerViewModelHelpers.cs" />
     <Compile Include="Models\Authorization\Models.cs" />
@@ -168,6 +175,7 @@
     <Compile Include="Models\WorkWithCategories\ProductViewModel.cs" />
     <Compile Include="Models\WorkWithCategories\ProductViewModelHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\CustomeRoleProvider.cs" />
     <Compile Include="SyntaticSugar\EmailSender.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011041750116_UpdateCustomer.resx">
       <DependentUpon>202011041750116_UpdateCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011152344114_UserRoles.resx">
+      <DependentUpon>202011152344114_UserRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
