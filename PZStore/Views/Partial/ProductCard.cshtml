@@ -1,15 +1,17 @@
 ﻿@using Domain.Entities
 @model Product
 
+<link rel="stylesheet" href="~/Content/Controllers/Partial/product-card.css" />
+
 <div class="col-md-3">
-    <div class="card text-center">
+    <div class="card text-center" style="min-height:95%">
         <img src="@Model.Image" alt="" class="card-img-top" />
         <div class="card-body">
-            <h5 class="card-title">@Model.Name</h5>
-            <p class="card-text">
-                @Model.Description
+            <h3 class="card-title">@Model.Name</h3>
+            <p class="card-text text-center" id="desc_text" style="color:green; font-size:2em;">
+                <strong>@Model.Price.ToString("C")</strong>
             </p>
-            <a href="" class="btn btn-info">SHOW</a>
+            @Html.ActionLink("SHOW", "ProductFullView", "Partial", new { productID = Model.ProductID }, new { @class = "btn btn-info" })
         </div>
     </div>
 </div>
