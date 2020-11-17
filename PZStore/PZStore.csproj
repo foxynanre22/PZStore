@@ -243,7 +243,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
-    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\CreateProduct.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AssignedCategoryData.cshtml" />
     <Content Include="Views\Authorization\LogIn.cshtml" />
     <Content Include="Views\Authorization\Register.cshtml" />
@@ -253,6 +253,8 @@
     <Content Include="Views\Account\ProfileDetails.cshtml" />
     <Content Include="Views\Authorization\ConfirmSuccess.cshtml" />
     <Content Include="Views\Partial\ProductFullView.cshtml" />
+    <Content Include="Views\Admin\Categories.cshtml" />
+    <Content Include="Views\Admin\CreateCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
