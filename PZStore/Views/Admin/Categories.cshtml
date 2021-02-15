@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Domain.Entities.Category>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <h2 class="card-header">
+        List of Categories
+        @Html.ActionLink("Create New Category", "CreateCategory", null, new { @class = "btn btn-success float-right" })
+    </h2>
+
+    <div class="card-body">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.CategoryID)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th class="text-center">
+                    Actions
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.CategoryID)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("DeleteCategory", "Admin"))
+                        {
+                            @Html.Hidden("CategoryID", item.CategoryID)
+                            <input type="submit" class="btn btn-danger btn-sm" value="Delete"
+                                   onclick="return confirm('Are you sure that you want delete this category?')" />
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

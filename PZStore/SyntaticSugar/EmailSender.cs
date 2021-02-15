@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Web;
 
 namespace PZStore.SyntaticSugar
@@ -70,6 +71,8 @@ namespace PZStore.SyntaticSugar
                 {
                     LinkedResource theEmailImage = new LinkedResource(imagePath);
                     theEmailImage.ContentId = imageID;
+                    theEmailImage.ContentType.MediaType = MediaTypeNames.Image.Jpeg;
+                    theEmailImage.TransferEncoding = TransferEncoding.Base64;
                     htmlView.LinkedResources.Add(theEmailImage);
                 }
                 catch (Exception e)

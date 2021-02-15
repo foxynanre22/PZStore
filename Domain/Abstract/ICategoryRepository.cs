@@ -11,5 +11,6 @@ namespace Domain.Abstract
     {
         IEnumerable<Category> Categories { get; }
         void SaveCategory(Category category);
+        void DeleteCategory(Category category);
     }
 }

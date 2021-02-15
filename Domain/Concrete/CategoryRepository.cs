@@ -17,6 +17,20 @@ namespace Domain.Concrete
             get { return context.Categories; }
         }
 
+        public void DeleteCategory(Category category)
+        {
+            if (category.CategoryID != 0)
+            {
+                Category dbCategory = context.Categories.Find(category.CategoryID);
+
+                if (dbCategory != null)
+                {
+                    context.Categories.Remove(dbCategory);
+                    context.SaveChanges();
+                }
+            }
+        }
+
         public void SaveCategory(Category category)
         {
             if (category.CategoryID == 0)

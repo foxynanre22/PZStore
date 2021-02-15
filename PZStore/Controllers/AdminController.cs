@@ -54,14 +54,55 @@ namespace PZStore.Controllers
             }
         }
 
-        public ActionResult Create()
+        public ActionResult Categories()
+        {
+            return View(categoryRepository.Categories);
+        }
+
+        public ActionResult CreateCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCategory(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                categoryRepository.SaveCategory(category);
+                TempData["message"] = string.Format("Category \"{0}\" are successful created", category.Name);
+            }
+            else
+            {
+                return View(category);
+            }
+
+            return RedirectToAction("Categories");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCategory(int categoryID)
+        {
+            if (ModelState.IsValid)
+            {
+                Category category = categoryRepository.Categories.FirstOrDefault(c => c.CategoryID == categoryID);
+                categoryRepository.DeleteCategory(category);
+                TempData["message"] = string.Format("Category \"{0}\" are successful deleted", category.Name);
+            }
+
+            return RedirectToAction("Categories");
+        }
+
+        public ActionResult CreateProduct()
         {
             var productViewModel = new ProductViewModel {Categories = FillCategoryData() };
             return View(productViewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(ProductViewModel productViewModel)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateProduct(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +121,7 @@ namespace PZStore.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete (int productID)
+        public ActionResult DeleteProduct (int productID)
         {
             if (ModelState.IsValid)
             {
