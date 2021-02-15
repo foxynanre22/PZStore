@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PZStore.Models.ContactPage.ContactPageModel
+@{
     ViewBag.Title = "Contact PZStore";
 }
 <link rel="stylesheet" href="~/Content/pages/contact.css"/>
@@ -10,20 +11,35 @@
 <figure class="container-fluid">
     <div class="fixed-wrap">
         <div id="fixed">
-            <form class="contact-form">
+            @using (@Html.BeginForm(null, null, FormMethod.Post, new { @class = "contact-form" }))
+             {
+                @Html.AntiForgeryToken()
+
                 <div class="form-group">
-                    <input type="text" placeholder="Your name" class="form-control" />
+                    @Html.TextBoxFor(model => model.Name, new
+                    {
+                        @type = "text",
+                        @class = "form-control",
+                        @placeholder = "Your Name",
+                        @required = "required"
+                    })
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" />
+                    @Html.TextBoxFor(model => model.Email, new
+                    {
+                        @type = "email",
+                        @class = "form-control",
+                        @placeholder = "Your Email",
+                        @required = "required"
+                    })
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Message" class="form-control" rows="5"></textarea>
+                    @Html.TextAreaFor(model => model.Message, new { @class = "form-control", @rows="5", @placeholder="Message" })
                 </div>
                 <div class="form-group" id="send_div">
-                    @Html.ActionLink("Send", "", "", new { area = "" }, new { @class = "btn btn-success" })
+                    <input type="submit" class="btn btn-success" value="Send">       
                 </div>
-            </form>
+             }
         </div>
     </div>
 </figure>

@@ -168,6 +168,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Authorization\CustomerViewModelHelpers.cs" />
     <Compile Include="Models\Authorization\Models.cs" />
+    <Compile Include="Models\ContactPage\ContactPageModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductsPagesViewModel.cs" />
     <Compile Include="Models\WorkWithCategories\AssignedCategoryData.cs" />
@@ -255,6 +256,7 @@
     <Content Include="Views\Partial\ProductFullView.cshtml" />
     <Content Include="Views\Admin\Categories.cshtml" />
     <Content Include="Views\Admin\CreateCategory.cshtml" />
+    <Content Include="Views\Home\ContactThanks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
