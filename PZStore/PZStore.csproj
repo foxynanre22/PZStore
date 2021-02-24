@@ -146,6 +146,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,6 +169,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Authorization\CustomerViewModelHelpers.cs" />
     <Compile Include="Models\Authorization\Models.cs" />
+    <Compile Include="Models\Cart\Cart.cs" />
+    <Compile Include="Models\Cart\CartIndexViewModel.cs" />
     <Compile Include="Models\ContactPage\ContactPageModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductsPagesViewModel.cs" />
@@ -180,9 +183,11 @@
     <Compile Include="SyntaticSugar\EmailSender.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\images\account\layout\cart-icon.png" />
     <Content Include="Assets\images\account\layout\user_img.png" />
     <Content Include="Assets\images\account\profile-details\lock.png" />
     <Content Include="Assets\images\account\profile-details\unlocked.png" />
+    <Content Include="Assets\images\master-page\cart-icon.png" />
     <Content Include="Assets\images\register\check_mark.png" />
     <Content Include="Assets\images\contact-page\coffee-cup.jpg" />
     <Content Include="Assets\images\master-page\logo.png" />
@@ -257,6 +262,7 @@
     <Content Include="Views\Admin\Categories.cshtml" />
     <Content Include="Views\Admin\CreateCategory.cshtml" />
     <Content Include="Views\Home\ContactThanks.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

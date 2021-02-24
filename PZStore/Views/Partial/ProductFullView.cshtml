@@ -28,7 +28,14 @@
             </div>
             <br />
             <div class="row">
-                <a href="#" class="btn btn-warning">Add to Cart</a>
+                @using (Html.BeginForm("AddToCart", "Cart"))
+                {
+                    <div class="pull-right">
+                        @Html.HiddenFor(x => x.ProductID)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                        <input type="submit" class="btn btn-warning" value="Add to Cart" />
+                    </div>
+                }
             </div>       
         </div>
     </div>
