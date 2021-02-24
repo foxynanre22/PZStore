@@ -46,29 +46,9 @@ namespace PZStore.Controllers
                     {
                         string messageSubject = "Email Confirmation";
 
-                        string message = string.Format("<html>" +
-                        "<head>" +
-                        "<meta charset = \"utf-8\"/>" +
-                        "</head>" +
-                        "<body style=\"justify-content: center; align-items: center;\">" +
-                        "<div style=\"max-width: 640px; margin:0 auto; text-align:center;\">" +
-                        "<table style=\"border-collapse:collapse;width:100%;text-align:center\" bgcolor=\"#6B8E23\">" +
-                        "<tbody>" +
-                        "<tr>" +
-                        "<td style=\"border-collapse:collapse;\">" +
-                        "<img src=\"cid:logo\" alt=\"logo\" height=\"34\" style=\"height:auto;line-height:100%;outline:none;text-decoration:none;border:0 none;\">" +
-                        "</td>" +
-                        "</tr>" +
-                        "</tbody>" +
-                        "</table>" +
-                        "<h1>Welcome to PZStore!</h1>" +
-                        "<h4>Please, click button below for successful complete your account confirmation.</h4>" +
-                        "<hr>" +
-                        "<button style=\"padding: 10px; background-color:#6B8E23; border: 1px solid; border-radius: 12px;\"><a style=\"color:antiquewhite; position:relative; text-decoration:none;text-transform:uppercase;\" href=\"{0}\" title=\"Confirm Email\" role=\"button\">" +
-                        "Confirm Email</a></button>" +
-                        "</div>" +
-                        "</body>" +
-                        "</html>", Url.Action("ConfirmEmail", "Authorization", new { Token = customer.CustomerID, Email = customer.Email }, Request.Url.Scheme));
+                        string content = System.IO.File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("~/Mail Templates/RegisterMailTemplate.html"));
+
+                        string message = string.Format(content, Url.Action("ConfirmEmail", "Authorization", new { Token = customer.CustomerID, Email = customer.Email }, Request.Url.Scheme));
 
                         EmailSender.SendHtmlEmailTo(customer.Email, messageSubject, message, "C:\\Users\\Daniel Martin\\Desktop\\PZStore\\project\\PZStore\\Assets\\images\\master-page\\logo.png", "logo");
 
@@ -162,6 +142,7 @@ namespace PZStore.Controllers
                         if (customer.Password == model.Password)
                         {
                             FormsAuthentication.SetAuthCookie(customer.Email, true);
+                            Session["Cart"] = null;
                             return RedirectToAction("Index", "Home");
                         }
                         else
@@ -185,6 +166,7 @@ namespace PZStore.Controllers
         public ActionResult Account_Exit()
         {
             FormsAuthentication.SignOut();
+            Session["Cart"] = null;
             return RedirectToAction("Index", "Home");
         }
     }

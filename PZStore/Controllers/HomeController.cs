@@ -36,20 +36,11 @@ namespace PZStore.Controllers
             if (ModelState.IsValid)
             {
                 string messageSubject = "Message from: " + model.Email;
-
-                string message = string.Format("<html>" +
-                "<head>" +
-                "<meta charset = \"utf-8\"/>" +
-                "</head>" +
-                "<body style=\"justify-content: center; align-items: center;\">" +
-                "<div style=\"max-width: 640px; margin:0 auto; text-align:center;\">" +
-                "<h1>Message from {0}</h1>" +
-                "<h5>{1}</h5>" +
-                "<hr>" +
-                "<h5>Customer waiting for response.</h5>" +
-                "</div>" +
-                "</body>" +
-                "</html>", model.Name, model.Message);
+                
+                string content = System.IO.File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("~/Mail Templates/ContactMailTemplate.html"));
+                
+                // look into file to understand where parameters are
+                string message = string.Format(content, model.Name, model.Message);
 
                 EmailSender.SendHtmlEmailTo("pzstore9@gmail.com", messageSubject, message);
 

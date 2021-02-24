@@ -17,7 +17,7 @@ namespace PZStore.Controllers
             repository = repo;
         }
 
-        public ViewResult Index(string returnUrl)
+        public ActionResult Index(string returnUrl = "~/Home/Index")
         {
             return View(new CartIndexViewModel
             {
