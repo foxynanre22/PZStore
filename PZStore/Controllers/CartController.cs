@@ -17,48 +17,38 @@ namespace PZStore.Controllers
             repository = repo;
         }
 
-        public ActionResult Index(string returnUrl = "~/Home/Index")
+        //Cart getting from session using Infrastructure.Binders.CartModelBinder (registered in Global.asax)
+        public ActionResult Index(Cart cart, string returnUrl = "~/Home/Index")
         {
             return View(new CartIndexViewModel
             {
-                Cart = GetCart(),
+                Cart = cart,
                 ReturnUrl = returnUrl
             });
         }
-
-        public RedirectToRouteResult AddToCart(int productId, string returnUrl)
+        //Cart getting from session using Infrastructure.Binders.CartModelBinder (registered in Global.asax)
+        public RedirectToRouteResult AddToCart(Cart cart, int productId, string returnUrl)
         {
             Product product = repository.Products
                 .FirstOrDefault(g => g.ProductID == productId);
 
             if (product != null)
             {
-                GetCart().AddItem(product, 1);
+                cart.AddItem(product, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
-
-        public RedirectToRouteResult RemoveFromCart(int productId, string returnUrl)
+        //Cart getting from session using Infrastructure.Binders.CartModelBinder (registered in Global.asax)
+        public RedirectToRouteResult RemoveFromCart(Cart cart, int productId, string returnUrl)
         {
             Product product = repository.Products
                 .FirstOrDefault(g => g.ProductID == productId);
 
             if (product != null)
             {
-                GetCart().RemoveLine(product);
+                cart.RemoveLine(product);
             }
             return RedirectToAction("Index", new { returnUrl });
-        }
-
-        public Cart GetCart()
-        {
-            Cart cart = (Cart)Session["Cart"];
-            if (cart == null)
-            {
-                cart = new Cart();
-                Session["Cart"] = cart;
-            }
-            return cart;
         }
     }
 }

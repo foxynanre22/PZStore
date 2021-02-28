@@ -4,7 +4,7 @@
     ViewBag.Title = "Cart";
 }
 
-<div class="container" style="margin-top:2%">
+<div class="container-fluid" style="margin-top:2%">
     <h2>Your Cart</h2>
     <table class="table">
         <thead>
@@ -13,6 +13,7 @@
                 <th class="text-center">Quantity</th>
                 <th class="text-center">Price</th>
                 <th class="text-center">General</th>
+                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,20 +26,26 @@
                     <td class="text-center">
                         @((line.Quantity * line.Product.Price).ToString("C"))
                     </td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                        {
+                            @Html.Hidden("ProductID", line.Product.ProductID)
+                            @Html.HiddenFor(x => x.ReturnUrl)
+                            <input class="btn btn-sm btn-danger" type="submit" value="Remove" />
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" class="text-center"></td>
-                <td class="text-center">
-                    @Model.Cart.ComputeTotalValue().ToString("C")
-                </td>
+                <td colspan="5" class="text-center">General: <b>@Model.Cart.ComputeTotalValue().ToString("C")</b></td>
+
             </tr>
         </tfoot>
     </table>
 
     <div class="text-center">
-        <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+        <a class="btn btn-primary" href="~/Home/Index">Continue Shopping</a>
     </div>
 </div>
