@@ -1,9 +1,11 @@
 ﻿using Domain.Abstract;
 using Domain.Entities;
 using PZStore.Models.Cart;
+using PZStore.SyntaticSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -49,6 +51,50 @@ namespace PZStore.Controllers
                 cart.RemoveLine(product);
             }
             return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public ViewResult Checkout(Cart cart)
+        {
+            return View(new OrderDetails());
+        }
+
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, OrderDetails orderDetails)
+        {
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Sorry, but your cart is empty!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                string messageSubject = "Order to: " + orderDetails.Name + "@" + orderDetails.Email;
+
+                string content = System.IO.File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("~/Mail Templates/OrderMailTemplate.html"));
+
+                StringBuilder orderHTML = new StringBuilder();
+
+                foreach (var line in cart.Lines)
+                {
+                    var subtotal = line.Product.Price * line.Quantity;
+                    orderHTML.AppendFormat("<h3>{0} x {1} || (total: {2:c})</h3>",
+                        line.Product.Name, line.Quantity, subtotal);
+                }
+                orderHTML.AppendFormat("<h2>Total cost: {0:c}</h2>", cart.ComputeTotalValue());
+
+                // look into file to understand where parameters are
+                string message = string.Format(content, orderDetails.Email, orderDetails.Name, orderDetails.Adress,
+                                                        orderDetails.City, orderDetails.Country, orderHTML);
+
+                EmailSender.SendHtmlEmailTo("pzstore9@gmail.com", messageSubject, message);
+
+                cart.Clear();
+                return View("Completed");
+            }
+            else
+            {
+                return View(orderDetails);
+            }
         }
     }
 }

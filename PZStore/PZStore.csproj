@@ -172,6 +172,7 @@
     <Compile Include="Models\Authorization\Models.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartIndexViewModel.cs" />
+    <Compile Include="Models\Cart\OrderDetails.cs" />
     <Compile Include="Models\ContactPage\ContactPageModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductsPagesViewModel.cs" />
@@ -212,6 +213,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Controllers\Partial\product-card.css" />
+    <Content Include="Content\ErrorStyles.css" />
     <Content Include="Content\pages\about.css" />
     <Content Include="Content\pages\contact.css" />
     <Content Include="Content\pages\main-page.css" />
@@ -222,6 +224,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Mail Templates\ContactMailTemplate.html" />
+    <Content Include="Mail Templates\OrderMailTemplate.html" />
     <Content Include="Mail Templates\RegisterMailTemplate.html" />
     <Content Include="Scripts\Account\ProfileDetails.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -266,6 +269,8 @@
     <Content Include="Views\Admin\CreateCategory.cshtml" />
     <Content Include="Views\Home\ContactThanks.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\Completed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

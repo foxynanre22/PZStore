@@ -20,13 +20,11 @@ namespace Domain.Entities
         public string Phone { get; set; }
 
         // Navigation properties
-        public virtual ICollection<Order> Orders { get; set; }
         public int RoleID { get; set; }
         public Role Role { get; set; }
 
         public Customer()
         {
-            Orders = new List<Order>();
         }
     }
 
