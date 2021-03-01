@@ -37,7 +37,6 @@ namespace Domain.Concrete
                     dbCustomer.LastName = customer.LastName;
                     dbCustomer.Country = customer.Country;
                     dbCustomer.Phone = customer.Phone;
-                    dbCustomer.Orders = customer.Orders;
                     dbCustomer.RoleID = 2;
                 }
             }

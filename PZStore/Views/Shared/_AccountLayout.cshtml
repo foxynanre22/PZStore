@@ -6,6 +6,7 @@
         <title>PZStore</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="shortcut icon" href="~/Assets/images/master-page/shortcut-icon.png" type="image/png">
+        <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -37,8 +38,15 @@
                     </form>
 
                     <ul class="navbar-nav" style="margin-left: auto !important;">
+                        <li class="nav-item nav-link" id="cartLink">
+                            <a class="navbar-brand-link" id="carTLink" href="@Url.Action("Index", "Cart")">
+                                <img src="~/Assets/images/master-page/cart-icon.png" alt="cartIcon" id="cart_Icon" style="height: 55px; margin-right:45px;" />
+                            </a>
+                        </li>
+
                         <li class="nav-item nav-link">
                             <div class="dropdown show">
+
                                 <a class="navbar-brand-link" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="~/Assets/images/account/layout/user_img.png" alt="userLogo" id="user_logo" style="height: 55px" />
                                 </a>

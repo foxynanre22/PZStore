@@ -22,7 +22,6 @@ namespace PZStore.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IProductRepository>().To<ProductRepository>();
-            kernel.Bind<IOrderRepository>().To<OrderRepository>();
             kernel.Bind<ICategoryRepository>().To<CategoryRepository>();
             kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
         }

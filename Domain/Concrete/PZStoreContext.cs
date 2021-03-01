@@ -11,7 +11,6 @@ namespace Domain.Concrete
     { 
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Role> Roles { get; set; }
 
@@ -26,17 +25,6 @@ namespace Domain.Concrete
                     pc.ToTable("ProductCategory");
                     pc.MapLeftKey("CategoryId");
                     pc.MapRightKey("ProductId");
-                });
-
-            //creating many to many relationship between Product and Order
-            modelBuilder.Entity<Order>()
-                .HasMany<Product>(o => o.Products)
-                .WithMany(p => p.Orders)
-                .Map(op =>
-                {
-                    op.ToTable("OrderDetails");
-                    op.MapLeftKey("OrderId");
-                    op.MapRightKey("ProductId"); 
                 });
 
             base.OnModelCreating(modelBuilder);
