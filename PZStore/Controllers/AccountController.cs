@@ -68,7 +68,7 @@ namespace PZStore.Controllers
         //load image on server + write path to this image in Product object
         private Customer loadAndBindImage(Customer customer, HttpPostedFileBase userImg)
         {
-            string fileName = customer.FirstName + customer.LastName;
+            string fileName = customer.FirstName + customer.LastName + customer.CustomerID;
             string fileExtension = userImg.FileName.Substring(userImg.FileName.IndexOf('.'));
             var fullFileName = Path.GetFileName(fileName + fileExtension);
 
@@ -79,6 +79,21 @@ namespace PZStore.Controllers
             customer.Image = "/Assets/images/users-photo/" + fullFileName;
 
             return customer;
+        }
+
+        public ActionResult DeleteProfile(int customerID)
+        {
+            Customer customer = customerRepository.Customers.FirstOrDefault(c => c.CustomerID == customerID);
+            customerRepository.DeleteCustomer(customer);
+
+            string path = Server.MapPath(customer.Image);
+            FileInfo file = new FileInfo(path);
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+
+            return RedirectToAction("Account_Exit", "Authorization");
         }
     }
 }

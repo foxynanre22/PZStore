@@ -48,14 +48,19 @@
                             <div class="dropdown show">
 
                                 <a class="navbar-brand-link" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @{ var customer = (Domain.Entities.Customer)Session["user"];}
-                                    @if (customer.Image != null)
-                                    {
-                                        <img src="@customer.Image" alt="userLogo" id="user_logo" style="height: 55px;border-radius:50%" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Assets/images/account/layout/user_img.png" alt="userLogo" id="user_logo" style="height: 55px;" />
+                                    @{
+                                        var customer = (Domain.Entities.Customer)Session["user"];
+                                        if (customer != null)
+                                        {
+                                            if (customer.Image != null)
+                                            {
+                                                <img src="@customer.Image" alt="userLogo" id="user_logo" style="height: 55px;border-radius:50%" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Assets/images/account/layout/user_img.png" alt="userLogo" id="user_logo" style="height: 55px;" />
+                                            }
+                                        }
                                     }
                                 </a>
 

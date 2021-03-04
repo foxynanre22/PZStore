@@ -26,6 +26,8 @@
                 <div class="col-md-10" style="margin: 0 auto;">
                     <div class="editor-field">
                         <input type="file" class="btn btn-dark btn-block btn-lg" name="userImg" accept=".png, .jpg, .jpeg" />
+                        <br />
+                        @Html.ActionLink("Delete Account", "DeleteProfile", new { Model.CustomerID }, new { @onclick = "return confirm('Are you sure that you want delete account?')", @class = "btn btn-danger" })
                     </div>
                 </div>
             </div>
