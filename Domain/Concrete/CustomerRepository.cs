@@ -35,6 +35,7 @@ namespace Domain.Concrete
                     dbCustomer.Password = customer.Password;
                     dbCustomer.FirstName = customer.FirstName;
                     dbCustomer.LastName = customer.LastName;
+                    dbCustomer.Image = customer.Image;
                     dbCustomer.Country = customer.Country;
                     dbCustomer.Phone = customer.Phone;
                     dbCustomer.RoleID = 2;

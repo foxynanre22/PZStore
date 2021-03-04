@@ -143,6 +143,7 @@ namespace PZStore.Controllers
                         {
                             FormsAuthentication.SetAuthCookie(customer.Email, true);
                             Session["Cart"] = null;
+                            Session["user"] = customer;
                             return RedirectToAction("Index", "Home");
                         }
                         else
@@ -167,6 +168,7 @@ namespace PZStore.Controllers
         {
             FormsAuthentication.SignOut();
             Session["Cart"] = null;
+            Session["user"] = null;
             return RedirectToAction("Index", "Home");
         }
     }

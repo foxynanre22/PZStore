@@ -11,105 +11,122 @@
         <h4>Profile Details</h4>
         <hr />
     </div>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("ProfileDetails", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.CustomerID)
         @Html.HiddenFor(m => m.Email)
-        <div class="form-group" style="text-align:center">
-            <label for="FirstName">First Name:</label>
 
-            <div class="input-group" style="text-align:center; width:25%; margin:auto;">
-                @Html.TextBoxFor(model => model.FirstName, new
-                {
-                    @id = "firstName",
-                    @class = "form-control",
-                    @placeholder = "First Name",
-                    @required = "required",
-                    @readonly = true
-                })
-                <button id="firstNameLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('firstName', 'firstNameLock', 'firstNameUnlock', 'firstNameLockButt')">
-                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="firstNameLock">
-                    <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="firstNameUnlock">
-                </button>
+        <div class="row" style="margin:3%;">
+            <div class="col-md-5">
+                <div class="col-md-10" style="margin: 0 auto;">
+                    <img src="@Model.Image" alt="" style="max-width:90%;width:100%;" />
+                </div>
+                <br />
+                <div class="col-md-10" style="margin: 0 auto;">
+                    <div class="editor-field">
+                        <input type="file" class="btn btn-dark btn-block btn-lg" name="userImg" accept=".png, .jpg, .jpeg" />
+                    </div>
+                </div>
             </div>
 
-            @Html.ValidationMessageFor(model => model.FirstName, String.Empty, new { @style = "color:red" })
-        </div>
+            <div class="col-md-7">
+                <div class="form-group" style="text-align:center">
+                    <label for="FirstName">First Name:</label>
 
-        <div class="form-group" style="text-align:center">
-            <label for="LastName">Last Name:</label>
+                    <div class="input-group" style="text-align:center; width:45%; margin:auto;">
+                        @Html.TextBoxFor(model => model.FirstName, new
+                        {
+                            @id = "firstName",
+                            @class = "form-control",
+                            @placeholder = "First Name",
+                            @required = "required",
+                            @readonly = true
+                        })
+                        <button id="firstNameLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('firstName', 'firstNameLock', 'firstNameUnlock', 'firstNameLockButt')">
+                            <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="firstNameLock">
+                            <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="firstNameUnlock">
+                        </button>
+                    </div>
 
-            <div class="input-group" style="text-align:center; width:25%; margin:auto;">
-                @Html.TextBoxFor(model => model.LastName, new
-                {
-                    @id = "lastName",
-                    @class = "form-control",
-                    @placeholder = "Last Name",
-                    @required = "required",
-                    @readonly = true
-                })
-                <button id="lastNameLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('lastName', 'lastNameLock', 'lastNameUnlock', 'lastNameLockButt')">
-                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="lastNameLock">
-                    <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="lastNameUnlock">
-                </button>
+                    @Html.ValidationMessageFor(model => model.FirstName, String.Empty, new { @style = "color:red" })
+                </div>
+
+                <div class="form-group" style="text-align:center">
+                    <label for="LastName">Last Name:</label>
+
+                    <div class="input-group" style="text-align:center; width:45%; margin:auto;">
+                        @Html.TextBoxFor(model => model.LastName, new
+                        {
+                            @id = "lastName",
+                            @class = "form-control",
+                            @placeholder = "Last Name",
+                            @required = "required",
+                            @readonly = true
+                        })
+                        <button id="lastNameLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('lastName', 'lastNameLock', 'lastNameUnlock', 'lastNameLockButt')">
+                            <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="lastNameLock">
+                            <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="lastNameUnlock">
+                        </button>
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.LastName, String.Empty, new { @style = "color:red" })
+                </div>
+
+                <div class="form-group" style="text-align:center">
+                    <label for="Password">Password:</label>
+
+                    <div class="input-group" style="text-align:center; width:45%; margin:auto;">
+                        @Html.TextBoxFor(model => model.Password, new
+                        {
+                           @id = "password",
+                           @type = "password",
+                           @class = "form-control",
+                           @placeholder = "Password",
+                           @required = "required",
+                           @readonly = true
+                        })
+                        <button id="passwordLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('password', 'passwordLock', 'passwordUnlock', 'passwordLockButt')">
+                            <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="passwordLock">
+                            <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="passwordUnlock">
+                        </button>
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @style = "color:red" })
+                </div>
+
+                <div class="form-group" style="text-align:center">
+                    <label>Country:</label>
+                    <br />
+
+                    @Html.DropDownListFor(model => model.Country, new SelectList(Enum.GetValues(typeof(@PZStore.Models.Authorization.Countries))), "Choose Country",
+                                                                                            new { @id = "country", @class = "browser-default custom-select", @style = "width: 45%; margin:auto;" })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.Country, String.Empty, new { @style = "color:red" })
+                </div>
+
+                <div class="form-group" style="text-align:center">
+                    <label for="Phone">Phone:</label>
+
+                    <div class="input-group" style="text-align:center; width:45%; margin:auto;" id="phone_div">
+                        @Html.TextBoxFor(model => model.Phone, new
+                        {
+                            @id = "phone",
+                            @type = "tel",
+                            @class = "form-control field",
+                            @placeholder = "Your Phone",
+                            @required = "required",
+                            @readonly = true
+                        })
+                        <button id="phoneLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('phone', 'phoneLock', 'phoneUnlock', 'phoneLockButt')">
+                            <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="phoneLock">
+                            <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="phoneUnlock">
+                        </button>
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.Phone, String.Empty, new { @style = "color:red" })
+                </div>
             </div>
-
-            @Html.ValidationMessageFor(model => model.LastName, String.Empty, new { @style = "color:red" })
-        </div>
-
-        <div class="form-group" style="text-align:center">
-            <label for="Password">Password:</label>
-
-            <div class="input-group" style="text-align:center; width:25%; margin:auto;">
-                @Html.TextBoxFor(model => model.Password, new
-                {
-                   @id = "password",
-                   @type = "password",
-                   @class = "form-control",
-                   @placeholder = "Password",
-                   @required = "required",
-                   @readonly = true
-                })
-                <button id="passwordLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('password', 'passwordLock', 'passwordUnlock', 'passwordLockButt')">
-                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="passwordLock">
-                    <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="passwordUnlock">
-                </button>
-            </div>
-
-            @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @style = "color:red" })
-        </div>
-
-        <div class="form-group" style="text-align:center">
-            <label>Country:</label>
-            <br />
-
-            @Html.DropDownListFor(model => model.Country, new SelectList(Enum.GetValues(typeof(@PZStore.Models.Authorization.Countries))), "Choose Country",
-                                                                                    new { @id = "country", @class = "browser-default custom-select", @style = "width: 25%; margin:auto;" })
-            <br />
-            @Html.ValidationMessageFor(model => model.Country, String.Empty, new { @style = "color:red" })
-        </div>
-
-        <div class="form-group" style="text-align:center">
-            <label for="Phone">Phone:</label>
-
-            <div class="input-group" style="text-align:center; width:25%; margin:auto;" id="phone_div">
-                @Html.TextBoxFor(model => model.Phone, new
-                {
-                    @id = "phone",
-                    @type = "tel",
-                    @class = "form-control field",
-                    @placeholder = "Your Phone",
-                    @required = "required",
-                    @readonly = true
-                })
-                <button id="phoneLockButt" type="button" style="background-color:#6B8E23" onclick="changeLock('phone', 'phoneLock', 'phoneUnlock', 'phoneLockButt')">
-                    <img src="~/Assets/images/account/profile-details/lock.png" alt="lock" style="height:30px;" id="phoneLock">
-                    <img src="~/Assets/images/account/profile-details/unlocked.png" alt="unlock" style="height:30px; visibility:hidden" id="phoneUnlock">
-                </button>
-            </div>
-
-            @Html.ValidationMessageFor(model => model.Phone, String.Empty, new { @style = "color:red" })
         </div>
 
         <hr />

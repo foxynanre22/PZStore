@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Net.Mail;
+using System.IO;
 
 namespace PZStore.Controllers
 {
@@ -29,7 +30,7 @@ namespace PZStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ProfileDetails(Customer model)
+        public ActionResult ProfileDetails(Customer model, HttpPostedFileBase userImg)
         {
             if (ModelState.IsValid)
             {
@@ -40,6 +41,19 @@ namespace PZStore.Controllers
                 customer.Password = model.Password;
                 customer.Phone = model.Phone;
 
+                if (userImg != null)
+                {
+                    //delete previous image before load the new one
+                    string path = Server.MapPath(customer.Image);
+                    FileInfo file = new FileInfo(path);
+                    if (file.Exists)
+                    {
+                        file.Delete();
+                    }
+
+                    customer = loadAndBindImage(customer, userImg);
+                }
+
                 customerRepository.SaveCustomer(customer);
                 TempData["message"] = string.Format("Detail of \"{0}\" are successful changed", customer.FirstName);
 
@@ -49,6 +63,22 @@ namespace PZStore.Controllers
             {
                 return View(model);
             }
+        }
+
+        //load image on server + write path to this image in Product object
+        private Customer loadAndBindImage(Customer customer, HttpPostedFileBase userImg)
+        {
+            string fileName = customer.FirstName + customer.LastName;
+            string fileExtension = userImg.FileName.Substring(userImg.FileName.IndexOf('.'));
+            var fullFileName = Path.GetFileName(fileName + fileExtension);
+
+            var directoryToSave = Server.MapPath(Url.Content("~/Assets/images/users-photo/"));
+            var pathToSave = Path.Combine(directoryToSave, fullFileName);
+
+            userImg.SaveAs(pathToSave);
+            customer.Image = "/Assets/images/users-photo/" + fullFileName;
+
+            return customer;
         }
     }
 }
