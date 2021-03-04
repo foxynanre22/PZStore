@@ -21,7 +21,6 @@ namespace PZStore.Models.WorkWithCategories
         [Required(ErrorMessage = "Please, enter description of the product")]
         public String Description { get; set; }
 
-        [Required(ErrorMessage = "Please, enter the path to the product image")]
         public string Image { get; set; }
 
         [Required]

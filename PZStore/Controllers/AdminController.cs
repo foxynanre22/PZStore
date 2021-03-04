@@ -3,6 +3,7 @@ using Domain.Entities;
 using PZStore.Models.WorkWithCategories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,7 +27,7 @@ namespace PZStore.Controllers
             return View(productRepository.Products);
         }
 
-        public ActionResult Edit(int productID)
+        public ActionResult EditProduct(int productID)
         {
             Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == productID);
             var viewModel = ProductViewModelHelpers.ToViewModel(product);
@@ -36,22 +37,36 @@ namespace PZStore.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(ProductViewModel productViewModel)
+        public ActionResult EditProduct(ProductViewModel productViewModel, HttpPostedFileBase productImg)
         {
             if (ModelState.IsValid)
             {
-                var product = ProductViewModelHelpers.ToDomainModel(productViewModel);
+                Product product = ProductViewModelHelpers.ToDomainModel(productViewModel);
+
+                //save image on the server and write path to it to the product object
+                if (productImg != null)
+                {
+                    //delete previous image before load the new one
+                    string path = Server.MapPath(product.Image);
+                    FileInfo file = new FileInfo(path);
+                    if (file.Exists)
+                    {
+                        file.Delete();
+                    }
+
+                    product = loadAndBindImage(product, productImg);
+                }
 
                 AddOrUpdateCategories(product, productViewModel.Categories);
                 productRepository.SaveProduct(product);
-
                 TempData["message"] = string.Format("Product \"{0}\" are successful changed", product.Name);
-                return RedirectToAction("Index");
             }
             else
             {
                 return View(productViewModel);
             }
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult Categories()
@@ -102,11 +117,17 @@ namespace PZStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProduct(ProductViewModel productViewModel)
+        public ActionResult CreateProduct(ProductViewModel productViewModel, HttpPostedFileBase productImg)
         {
             if (ModelState.IsValid)
             {
-                var product = ProductViewModelHelpers.ToDomainModel(productViewModel);
+                Product product = ProductViewModelHelpers.ToDomainModel(productViewModel);
+
+                //save image on the server and write path to it to the product object
+                if (productImg != null)
+                {
+                    product = loadAndBindImage(product, productImg);
+                }
 
                 AddOrUpdateCategories(product, productViewModel.Categories);
                 productRepository.SaveProduct(product);
@@ -127,6 +148,16 @@ namespace PZStore.Controllers
             {
                 Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == productID);
                 productRepository.DeleteProduct(product);
+
+                //alse delete image of the product from server
+                string path = Server.MapPath(product.Image);
+                FileInfo file = new FileInfo(path);
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+
+
                 TempData["message"] = string.Format("Product \"{0}\" are successful deleted", product.Name);
             }
 
@@ -166,6 +197,22 @@ namespace PZStore.Controllers
             }
 
             return assignedCategories;
+        }
+
+        //load image on server + write path to this image in Product object
+        private Product loadAndBindImage(Product product, HttpPostedFileBase productImg)
+        {
+            string fileName = String.Concat(product.Name.Where(c => !Char.IsWhiteSpace(c)));
+            string fileExtension = productImg.FileName.Substring(productImg.FileName.IndexOf('.'));
+            var fullFileName = Path.GetFileName(fileName + fileExtension);
+
+            var directoryToSave = Server.MapPath(Url.Content("~/Assets/images/products/"));
+            var pathToSave = Path.Combine(directoryToSave, fullFileName);
+
+            productImg.SaveAs(pathToSave);
+            product.Image = "/Assets/images/products/" + fullFileName;
+
+            return product;
         }
     }
 }

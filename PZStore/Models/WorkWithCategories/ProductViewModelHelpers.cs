@@ -29,8 +29,8 @@ namespace PZStore.Models.WorkWithCategories
 
             product.ProductID = productViewModel.ProductID;
             product.Name = productViewModel.Name;
-            product.Description = productViewModel.Description;
             product.Image = productViewModel.Image;
+            product.Description = productViewModel.Description;
             product.Stock = productViewModel.Stock;
             product.Price = productViewModel.Price;
             

@@ -41,7 +41,7 @@
                         @Html.DisplayFor(modelItem => item.ProductID)
                     </td>
                     <td class="text-center">
-                        @Html.ActionLink(item.Name, "Edit", new { item.ProductID})
+                        @Html.ActionLink(item.Name, "EditProduct", new { item.ProductID})
                     </td>
                     <td class="text-center" style="max-width: 300px;">
                         @Html.DisplayFor(modelItem => item.Description)
@@ -53,7 +53,7 @@
                         @Html.DisplayFor(modelItem => item.Stock)
                     </td>
                     <td class="text-center">
-                        @using (Html.BeginForm("Delete", "Admin"))
+                        @using (Html.BeginForm("DeleteProduct", "Admin"))
                         {
                             @Html.Hidden("ProductID", item.ProductID)
                             <input type="submit" class="btn btn-danger btn-sm" value="Delete" 
