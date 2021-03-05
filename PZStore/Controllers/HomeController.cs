@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PZStore.Utility;
 
 namespace PZStore.Controllers
 {
@@ -42,9 +43,20 @@ namespace PZStore.Controllers
                 // look into file to understand where parameters are
                 string message = string.Format(content, model.Name, model.Message);
 
-                EmailSender.SendHtmlEmailTo("pzstore9@gmail.com", messageSubject, message);
+                try
+                {
+                    EmailSender.SendHtmlEmailTo("pzstore9@gmail.com", messageSubject, message);
+                    PZLogger.GetInstance().Info("HOME_CONTROLLER::Mail from " + model.Email + " successful sent");
 
-                return View("ContactThanks");
+                    return View("ContactThanks");
+
+                }
+                catch (Exception e)
+                {
+                    PZLogger.GetInstance().Error("HOME_CONTROLLER::" + e.Message);
+                    return View("~/Views/Shared/Error.cshtml");
+                }
+                
             }
             else
             {

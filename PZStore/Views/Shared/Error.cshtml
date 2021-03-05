@@ -1,13 +1,21 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
-</body>
-</html>
+﻿@{
+    ViewBag.Title = "Error on Server";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="congrat-body" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Assets/images/register/uncheck-mark.jpg" alt="check_mark"
+                 style="width:50%" class="float-md-right" />
+        </div>
+        <div class="col-md-6">
+            <h2 style="padding-top: 20px; color:red">
+                An Error Occured!
+            </h2>
+            <h4>
+                Something is broken. Please let us know what you were doing when this error occured using Contact page. We will fix it as soon as possible. Sorry for any inconvenience caused.
+            </h4>
+        </div>
+    </div>
+</div>

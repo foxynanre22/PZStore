@@ -2,6 +2,7 @@
 using Domain.Entities;
 using PZStore.Models.Cart;
 using PZStore.SyntaticSugar;
+using PZStore.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,10 +87,20 @@ namespace PZStore.Controllers
                 string message = string.Format(content, orderDetails.Email, orderDetails.Name, orderDetails.Adress,
                                                         orderDetails.City, orderDetails.Country, orderHTML);
 
-                EmailSender.SendHtmlEmailTo("pzstore9@gmail.com", messageSubject, message);
+                try
+                {
+                    EmailSender.SendHtmlEmailTo("pzstore9@gmail.com", messageSubject, message);
+                    PZLogger.GetInstance().Info("CART_CONTROLLER::Order from " + orderDetails.Email + " has been accepted.");
 
-                cart.Clear();
-                return View("Completed");
+                    cart.Clear();
+                    return View("Completed");
+
+                }
+                catch (Exception e)
+                {
+                    PZLogger.GetInstance().Error("HOME_CONTROLLER::" + e.Message);
+                    return View("~/Views/Shared/Error.cshtml");
+                }
             }
             else
             {

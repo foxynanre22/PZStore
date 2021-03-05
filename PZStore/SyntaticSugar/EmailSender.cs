@@ -31,7 +31,14 @@ namespace PZStore.SyntaticSugar
             mailMessage.Subject = messageSubject;
             mailMessage.Body = messageText;
 
-            smtp.Send(mailMessage);
+            try
+            {
+                smtp.Send(mailMessage);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while sending email to user. EmailTo: " + EmailTo + "; Error: " + e.Message);
+            }
         }
 
         public static void SendHtmlEmailTo(string EmailTo, string messageSubject, string htmlBody)
@@ -44,8 +51,14 @@ namespace PZStore.SyntaticSugar
             mailMessage.Subject = messageSubject;
             mailMessage.AlternateViews.Add(CreateHtmlForMessage(htmlBody));
 
-            smtp.Send(mailMessage);
-
+            try
+            {
+                smtp.Send(mailMessage);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while sending email to user. EmailTo: " + EmailTo + "; Error: " + e.Message);
+            }
         }
 
         public static void SendHtmlEmailTo(string EmailTo, string messageSubject, string htmlBody, string imagePath, string imageID)
@@ -56,9 +69,15 @@ namespace PZStore.SyntaticSugar
             mailMessage.IsBodyHtml = true;
 
             mailMessage.Subject = messageSubject;
-            mailMessage.AlternateViews.Add(CreateHtmlForMessage(htmlBody, imagePath, imageID));
-
-            smtp.Send(mailMessage);
+            try
+            {
+                mailMessage.AlternateViews.Add(CreateHtmlForMessage(htmlBody, imagePath, imageID));
+                smtp.Send(mailMessage);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while sending or creating email to user. EmailTo: " + EmailTo + "; Error: " + e.Message);
+            }
         }
 
         private static AlternateView CreateHtmlForMessage(string htmlBody, string imagePath = null, string imageID = null)
@@ -77,7 +96,7 @@ namespace PZStore.SyntaticSugar
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.ToString());
+                    throw new Exception("Error while creating html to send. Error: " + e.Message);
                 }
             }
 

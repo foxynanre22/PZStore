@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Net.Mail;
 using System.IO;
+using PZStore.Utility;
 
 namespace PZStore.Controllers
 {
@@ -51,7 +52,16 @@ namespace PZStore.Controllers
                         file.Delete();
                     }
 
-                    customer = loadAndBindImage(customer, userImg);
+                    try
+                    {
+                        customer = loadAndBindImage(customer, userImg);
+                        PZLogger.GetInstance().Info("ACCOUNT_CONTROLLER::Image for " + customer.FirstName + " " + customer.LastName + " has been saved.");
+                    }
+                    catch (Exception e)
+                    {
+                        PZLogger.GetInstance().Error("ACCOUNT_CONTROLLER::Image load error: " + e.Message);
+                        return View("~/Views/Shared/Error.cshtml");
+                    }
                 }
 
                 customerRepository.SaveCustomer(customer);
@@ -75,8 +85,15 @@ namespace PZStore.Controllers
             var directoryToSave = Server.MapPath(Url.Content("~/Assets/images/users-photo/"));
             var pathToSave = Path.Combine(directoryToSave, fullFileName);
 
-            userImg.SaveAs(pathToSave);
-            customer.Image = "/Assets/images/users-photo/" + fullFileName;
+            try
+            {
+                userImg.SaveAs(pathToSave);
+                customer.Image = "/Assets/images/users-photo/" + fullFileName;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
 
             return customer;
         }

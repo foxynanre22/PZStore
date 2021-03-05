@@ -2,6 +2,7 @@
 using Domain.Entities;
 using PZStore.Models.Authorization;
 using PZStore.SyntaticSugar;
+using PZStore.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,9 +51,18 @@ namespace PZStore.Controllers
 
                         string message = string.Format(content, Url.Action("ConfirmEmail", "Authorization", new { Token = customer.CustomerID, Email = customer.Email }, Request.Url.Scheme));
 
-                        EmailSender.SendHtmlEmailTo(customer.Email, messageSubject, message, "C:\\Users\\Daniel Martin\\Desktop\\PZStore\\project\\PZStore\\Assets\\images\\master-page\\logo.png", "logo");
+                        try
+                        {
+                            EmailSender.SendHtmlEmailTo(customer.Email, messageSubject, message, "C:\\Users\\Daniel Martin\\Desktop\\PZStore\\project\\PZStore\\Assets\\images\\master-page\\logo.png", "logo");
+                            PZLogger.GetInstance().Info("AUTHORIZATION_CONTROLLER::Verification email to " + customer.Email + " has been sent.");
 
-                        return RedirectToAction("CongratsRegister");
+                            return RedirectToAction("CongratsRegister");
+                        }
+                        catch(Exception e)
+                        {
+                            PZLogger.GetInstance().Error("AUTHORIZATION_CONTROLLER::" + e.Message);
+                            return View("~/Views/Shared/Error.cshtml");
+                        }
                     }
                 }
                 else

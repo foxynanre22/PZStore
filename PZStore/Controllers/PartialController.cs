@@ -1,6 +1,7 @@
 ﻿using Domain.Abstract;
 using Domain.Entities;
 using PZStore.Models;
+using PZStore.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,27 +27,35 @@ namespace PZStore.Controllers
 
         public PartialViewResult ProductsRow(string category, int page = 1)
         {
-            ProductsPagesViewModel model = new ProductsPagesViewModel
+            try 
             {
-                Products = repository.Products
+                ProductsPagesViewModel model = new ProductsPagesViewModel
+                {
+                    Products = repository.Products
                 .Where(p => category == null || p.Categories.FirstOrDefault().Name == category)
                 .OrderBy(product => product.ProductID)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize),
 
-                /*for PageLinks helper on View*/
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = pageSize,
-                    TotalItems = category == null ?
+                    /*for PageLinks helper on View*/
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = pageSize,
+                        TotalItems = category == null ?
                         repository.Products.Count() : repository.Products.Where(p => p.Categories.FirstOrDefault().Name == category).Count()
-                },
+                    },
 
-                CurrentCategory = category
-            }; 
+                    CurrentCategory = category
+                };
 
-            return PartialView(model);
+                return PartialView(model);
+            }
+            catch(Exception e)
+            {
+                PZLogger.GetInstance().Error("PARTIAL_CONTROLLER::" + e.Message);
+                return PartialView("~/Views/Shared/ErrorPartial.cshtml");
+            }   
         }
 
         public ActionResult ProductFullView(int productID)

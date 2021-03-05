@@ -1,6 +1,7 @@
 ﻿using Domain.Abstract;
 using Domain.Entities;
 using PZStore.Models.WorkWithCategories;
+using PZStore.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,7 +55,16 @@ namespace PZStore.Controllers
                         file.Delete();
                     }
 
-                    product = loadAndBindImage(product, productImg);
+                    try
+                    {
+                        product = loadAndBindImage(product, productImg);
+                        PZLogger.GetInstance().Info("ADMIN_CONTROLLER::Image for " + product.Name + " has been saved.");
+                    }
+                    catch (Exception e)
+                    {
+                        PZLogger.GetInstance().Error("ADMIN_CONTROLLER::Image load error: " + e.Message);
+                        return View("~/Views/Shared/Error.cshtml");
+                    }
                 }
 
                 AddOrUpdateCategories(product, productViewModel.Categories);
@@ -126,7 +136,17 @@ namespace PZStore.Controllers
                 //save image on the server and write path to it to the product object
                 if (productImg != null)
                 {
-                    product = loadAndBindImage(product, productImg);
+                    try 
+                    { 
+                        product = loadAndBindImage(product, productImg);
+                        PZLogger.GetInstance().Info("ADMIN_CONTROLLER::Image for " + product.Name + " has been saved.");
+                    }
+                    catch(Exception e) 
+                    {
+                        PZLogger.GetInstance().Error("ADMIN_CONTROLLER::Image load error: " + e.Message);
+                        return View("~/Views/Shared/Error.cshtml");
+                    }
+                    
                 }
 
                 AddOrUpdateCategories(product, productViewModel.Categories);
@@ -209,8 +229,15 @@ namespace PZStore.Controllers
             var directoryToSave = Server.MapPath(Url.Content("~/Assets/images/products/"));
             var pathToSave = Path.Combine(directoryToSave, fullFileName);
 
-            productImg.SaveAs(pathToSave);
-            product.Image = "/Assets/images/products/" + fullFileName;
+            try
+            {
+                productImg.SaveAs(pathToSave);
+                product.Image = "/Assets/images/products/" + fullFileName;
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
 
             return product;
         }
