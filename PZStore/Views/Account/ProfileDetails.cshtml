@@ -128,6 +128,10 @@
 
                     @Html.ValidationMessageFor(model => model.Phone, String.Empty, new { @style = "color:red" })
                 </div>
+
+                <div class="form-group" style="text-align:center">
+                    <a class="btn btn-warning" href="@Url.Action("Account_Exit", "Authorization")">Exit</a>
+                </div>
             </div>
         </div>
 

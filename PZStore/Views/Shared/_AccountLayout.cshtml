@@ -47,7 +47,7 @@
                         <li class="nav-item nav-link">
                             <div class="dropdown show">
 
-                                <a class="navbar-brand-link" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="navbar-brand-link" role="button" href="@Url.Action("ProfileDetails", "Account", new {customerEmail = User.Identity.Name })">
                                     @{
                                         if (Session["user"] != null)
                                         {
@@ -81,12 +81,6 @@
                                         }
                                     }
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="@Url.Action("ProfileDetails", "Account", new {customerEmail = User.Identity.Name })">Profile</a>
-                                    <a class="dropdown-item" href="#">Orders</a>
-                                    <a class="dropdown-item" href="@Url.Action("Account_Exit", "Authorization")">Exit</a>
-                                </div>
                             </div>
                         </li>
                     </ul>
