@@ -53,7 +53,8 @@ namespace PZStore.Controllers
             }
             catch(Exception e)
             {
-                PZLogger.GetInstance().Error("PARTIAL_CONTROLLER::" + e.Message);
+                PZLogger.GetInstance().Error("PARTIAL_CONTROLLER::" + e.ToString());
+
                 return PartialView("~/Views/Shared/ErrorPartial.cshtml");
             }   
         }

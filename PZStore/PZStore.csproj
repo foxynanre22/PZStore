@@ -237,6 +237,7 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\PZStore - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Mail Templates\ContactMailTemplate.html" />
     <Content Include="Mail Templates\OrderMailTemplate.html" />

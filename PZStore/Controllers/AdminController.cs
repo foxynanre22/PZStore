@@ -32,7 +32,7 @@ namespace PZStore.Controllers
         {
             Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == productID);
             var viewModel = ProductViewModelHelpers.ToViewModel(product);
-            viewModel.Categories = FillCategoryData();
+            viewModel.Categories = FillCategoryData(product);
 
             return View(viewModel);
         }
@@ -200,20 +200,48 @@ namespace PZStore.Controllers
             }
         }
 
-        //for initializing categories in ViewModel in Create() GET Method
-        private ICollection<AssignedCategoryData> FillCategoryData()
+        //for initializing categories in ViewModel in Create() and Edit() GET Method
+        private ICollection<AssignedCategoryData> FillCategoryData(Product product = null)
         {
             var categories = categoryRepository.Categories;
             var assignedCategories = new List<AssignedCategoryData>();
 
-            foreach (var category in categories)
+            if(product != null)
             {
-                assignedCategories.Add(new AssignedCategoryData
+                var productCategories = product.Categories;
+                foreach (var category in categories)
                 {
-                    CategoryID = category.CategoryID,
-                    Name = category.Name,
-                    Assigned = false
-                });
+                    if (productCategories.Contains(category))
+                    {
+                        assignedCategories.Add(new AssignedCategoryData
+                        {
+                            CategoryID = category.CategoryID,
+                            Name = category.Name,
+                            Assigned = true
+                        });
+                    }
+                    else
+                    {
+                        assignedCategories.Add(new AssignedCategoryData
+                        {
+                            CategoryID = category.CategoryID,
+                            Name = category.Name,
+                            Assigned = false
+                        });
+                    }                    
+                }
+            }
+            else
+            {
+                foreach (var category in categories)
+                {
+                    assignedCategories.Add(new AssignedCategoryData
+                    {
+                        CategoryID = category.CategoryID,
+                        Name = category.Name,
+                        Assigned = false
+                    });
+                }
             }
 
             return assignedCategories;

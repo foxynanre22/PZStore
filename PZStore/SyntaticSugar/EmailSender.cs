@@ -16,7 +16,7 @@ namespace PZStore.SyntaticSugar
         private static void SMTPInitializer()
         {
             smtp.Port = 587;
-            smtp.UseDefaultCredentials = true;
+            smtp.UseDefaultCredentials = false;
             smtp.EnableSsl = true;
             smtp.Credentials = new System.Net.NetworkCredential("pzstore9@gmail.com", "lfyybk546J@");
         }
@@ -37,7 +37,7 @@ namespace PZStore.SyntaticSugar
             }
             catch (Exception e)
             {
-                throw new Exception("Error while sending email to user. EmailTo: " + EmailTo + "; Error: " + e.Message);
+                throw new Exception("Error while sending email to user. EmailTo: " + EmailTo + "; Error:\n " + e.ToString());
             }
         }
 
